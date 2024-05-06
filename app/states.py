@@ -2,12 +2,19 @@ from FeatureCloud.app.engine.app import AppState, app_state, Role
 import time
 import os
 import logging
+from data_fetching import DataFetcher, ValidationDataFetcher
+from random_forest import randomForestA, randomForestB
 
 from neo4j import GraphDatabase, Query, Record
 from neo4j.exceptions import ServiceUnavailable
 from pandas import DataFrame
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+from sklearn.preprocessing import MultiLabelBinarizer
 
-from utils import read_config,write_output
+from utils import read_config,write_output,ResultRow,CSVResultsBuilder
 
 from FeatureCloud.app.engine.app import AppState, app_state
 
@@ -24,7 +31,6 @@ class ExecuteState(AppState):
 
         
     def run(self):
-        
         # Get Neo4j credentials from config
         neo4j_credentials = config.get("neo4j_credentials", {})
         NEO4J_URI = neo4j_credentials.get("NEO4J_URI", "")
@@ -35,18 +41,41 @@ class ExecuteState(AppState):
         
         # Driver instantiation
         driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
-        
+
+        # Result
+        result = CSVResultsBuilder()
+
         # Create a driver session with defined DB
         with driver.session(database=NEO4J_DB) as session:
-                
-            # Example Query to Count Nodes 
-            node_count_query = "MATCH (n) RETURN count(n)"
-        
-            # Use .data() to access the results array        
-            results = session.run(node_count_query).data()
-            logger.info(results)
+            # Result Builder
+            logger.info("Fetching data from Neo4j: ...")
+            fetcher = DataFetcher(session)
+            logger.info("Fetching data from Neo4j: Done")
             
-        write_output(f"{results}")
+            logger.info("Fetching validation data from Neo4j: ...")
+            validationFetcher = ValidationDataFetcher(session)
+            logger.info("Fetching validation data from Neo4j: Done")
+                
+        data = [vars(obj) for obj in fetcher.subjects]
+        df = pd.DataFrame(data)
+        df_A = df[['subjectId', 'isSick', 'icdFirstLetter', 'subjectMetrics', 'phenotypes']]
+        df_B = df[['subjectId', 'isSick', 'icdFirstLetter', 'subjectMetrics', 'phenotypes']]
+
+
+        testdata = [vars(obj) for obj in validationFetcher.subjects]
+        testdf = pd.DataFrame(testdata)
+        testdf_A = testdf[['subjectId', 'phenotypes', 'subjectMetrics']]
+        testdf_B = testdf[['subjectId', 'phenotypes', 'subjectMetrics']]
+
+
+        result_A = randomForestA(df_A, testdf_A)
+        logger.info(f"Results Task A: {result_A}")
+        result_A.to_csv(f"{OUTPUT_DIR}/results_task_A.csv", index=False)
+
+        result_B = randomForestB(df_B, testdf_B)
+        logger.info(f"Results Task B: {resultB}")
+        result_B.to_csv(f"{OUTPUT_DIR}/results_task_B.csv", index=False)
+
 
         # Close the driver connection
         driver.close()
