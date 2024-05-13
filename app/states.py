@@ -23,6 +23,8 @@ logger = logging.getLogger(__name__)
 
 config = read_config()
 
+OUTPUT_DIR = '/mnt/output'
+
 @app_state('initial')
 class ExecuteState(AppState):
 

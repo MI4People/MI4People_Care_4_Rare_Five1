@@ -31,7 +31,7 @@ class Phenotypes:
     
 def get_phenotypes(session, subjectId):
     query = """MATCH (a:Biological_sample {subjectid:\"""" + subjectId + """\"})-[:HAS_PHENOTYPE]->(p:Phenotype) 
-RETURN a.subjectid as subjectId, collect(p.id) as phenotypes"""
+                RETURN a.subjectid as subjectId, collect(p.id) as phenotypes"""
     data = session.run(query).data()
     if len(data) == 0:
         return Phenotypes(subjectId=subjectId, phenotypes=[])
@@ -80,6 +80,7 @@ def get_subject_metrics(session, subjectId):
         maxGeneScore: maxGeneScore,
         sumGeneScore: sumGeneScore,
         numPhenotypes: numPhenotypes} as subjectMetrics"""
+    
     data = session.run(query).data()
     if len(data) == 0:
         return SubjectMetrics(subjectMetrics={})
