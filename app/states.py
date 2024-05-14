@@ -2,7 +2,7 @@ from FeatureCloud.app.engine.app import AppState, app_state, Role
 import time
 import os
 import logging
-from app.data_fetching import DataFetcher, ValidationDataFetcher
+from data_fetching import DataFetcher, ValidationDataFetcher
 from model_trainer import randomForestA, randomForestB
 
 from neo4j import GraphDatabase, Query, Record
@@ -75,7 +75,7 @@ class ExecuteState(AppState):
         result_A.to_csv(f"{OUTPUT_DIR}/results_task_A.csv", index=False)
 
         result_B = randomForestB(df_B, testdf_B)
-        logger.info(f"Results Task B: {resultB}")
+        logger.info(f"Results Task B: {result_B}")
         result_B.to_csv(f"{OUTPUT_DIR}/results_task_B.csv", index=False)
 
 
