@@ -2,8 +2,8 @@ from FeatureCloud.app.engine.app import AppState, app_state, Role
 import time
 import os
 import logging
-from data_fetching import DataFetcher, ValidationDataFetcher
-from random_forest import randomForestA, randomForestB
+from app.data_fetching import DataFetcher, ValidationDataFetcher
+from model_trainer import randomForestA, randomForestB
 
 from neo4j import GraphDatabase, Query, Record
 from neo4j.exceptions import ServiceUnavailable
