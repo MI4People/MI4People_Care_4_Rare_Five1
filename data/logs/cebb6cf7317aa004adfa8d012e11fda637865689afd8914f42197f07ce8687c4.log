@@ -1,0 +1,155 @@
+2024-05-13 15:02:30,058 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-13 15:02:30,059 INFO supervisord started with pid 7
+2024-05-13 15:02:31,060 INFO spawned: 'app' with pid 8
+2024-05-13 15:02:31,061 INFO spawned: 'nginx' with pid 9
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:31,218 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:32,220 INFO spawned: 'app' with pid 49
+2024-05-13 15:02:32,220 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:32,364 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:34,368 INFO spawned: 'app' with pid 69
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:34,529 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:37,535 INFO spawned: 'app' with pid 89
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:38,688 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:02:38,689 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:39,691 INFO spawned: 'app' with pid 109
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:39,845 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:40,847 INFO spawned: 'app' with pid 129
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:42,001 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:02:42,001 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:43,005 INFO spawned: 'app' with pid 149
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:43,172 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:44,175 INFO spawned: 'app' with pid 169
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:45,344 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:02:45,344 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:46,349 INFO spawned: 'app' with pid 189
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:47,509 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:02:47,510 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:48,511 INFO spawned: 'app' with pid 209
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:49,692 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:02:49,692 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:50,694 INFO spawned: 'app' with pid 229
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:50,871 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:51,874 INFO spawned: 'app' with pid 249
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:52,047 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:54,049 INFO spawned: 'app' with pid 269
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:54,226 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:57,231 INFO spawned: 'app' with pid 289
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:58,394 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:02:58,395 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:59,398 INFO spawned: 'app' with pid 309
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:59,539 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:03:00,542 INFO spawned: 'app' with pid 329
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:03:00,725 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:03:02,729 INFO spawned: 'app' with pid 349
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:03:02,866 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:03:05,871 INFO spawned: 'app' with pid 369
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:03:06,037 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:03:07,039 INFO gave up: app entered FATAL state, too many start retries too quickly

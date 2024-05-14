@@ -1,0 +1,512 @@
+{"component":"MAIN","instance":"","level":"info","msg":"Controller start","time":"2024-05-13T14:55:49Z"}
+{"component":"MAIN","instance":"","level":"info","msg":"Mode: Dockerized (isolated)","time":"2024-05-13T14:55:49Z"}
+{"component":"MAIN","instance":"","level":"info","msg":"Configuration value 'HasGPU': false","time":"2024-05-13T14:55:49Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Removing leftover Docker entities for label: fc-controller-label","time":"2024-05-13T14:55:50Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Removed 0 of 0 leftover containers","time":"2024-05-13T14:55:50Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Removed 0 of 0 leftover volumes","time":"2024-05-13T14:55:50Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Removed 0 of 0 leftover networks","time":"2024-05-13T14:55:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:55:50Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Listening on port 9151","time":"2024-05-13T14:55:50Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Listening on port 9150","time":"2024-05-13T14:55:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:55:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:55:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:55:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:56:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:57:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:58:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T14:59:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:00:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:01:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:05Z"}
+{"component":"TESTBED","instance":"","level":"info","msg":"Create new test","time":"2024-05-13T15:02:06Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Create volumes and containers...","time":"2024-05-13T15:02:06Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_1_input_0_1715612526","time":"2024-05-13T15:02:06Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_1_output_0_1715612526","time":"2024-05-13T15:02:06Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Move data to workspace from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:02:06Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:02:06Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:07Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:08Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:02:09Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:02:10Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Move generic data to input volume from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:02:10Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:02:10Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:10Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:11Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:02:11Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:02:12Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Start application","time":"2024-05-13T15:02:12Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:13Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"error","msg":"Error response from daemon: No such image: mi4mi4people_care_4_rare_five1:latest","time":"2024-05-13T15:02:13Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_1_input_0_1715612526","time":"2024-05-13T15:02:13Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_1_output_0_1715612526","time":"2024-05-13T15:02:13Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Stopping test id: 1","time":"2024-05-13T15:02:13Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:23Z"}
+{"component":"TESTBED","instance":"","level":"info","msg":"Create new test","time":"2024-05-13T15:02:24Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Create volumes and containers...","time":"2024-05-13T15:02:24Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_1_input_0_1715612544","time":"2024-05-13T15:02:24Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_1_output_0_1715612544","time":"2024-05-13T15:02:24Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Move data to workspace from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:02:24Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:02:24Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:24Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:02:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:26Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:02:27Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Move generic data to input volume from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:02:27Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:02:27Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:27Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:02:28Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:29Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:02:29Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Start application","time":"2024-05-13T15:02:29Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:29Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Append app to list","time":"2024-05-13T15:02:30Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_1_input_1_1715612550","time":"2024-05-13T15:02:30Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_1_output_1_1715612551","time":"2024-05-13T15:02:31Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Move data to workspace from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:02:31Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:02:31Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:31Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:32Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:02:32Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:02:33Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Move generic data to input volume from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:02:33Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:02:33Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:34Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:35Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:02:35Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:02:36Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Start application","time":"2024-05-13T15:02:36Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:02:36Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Append app to list","time":"2024-05-13T15:02:37Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Link fc_mi4peoplecare4rarefive1latest_685971507 with global socket server","time":"2024-05-13T15:02:37Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Link fc_mi4peoplecare4rarefive1latest_575921696 with global socket server","time":"2024-05-13T15:02:37Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Start local socket server","time":"2024-05-13T15:02:37Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Start local socket server","time":"2024-05-13T15:02:37Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Link to global address","time":"2024-05-13T15:02:37Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Link to global address","time":"2024-05-13T15:02:37Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Registered new coordinator controller","time":"2024-05-13T15:02:37Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Registered new participant controller","time":"2024-05-13T15:02:37Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Received setup trigger","time":"2024-05-13T15:02:37Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Received setup trigger","time":"2024-05-13T15:02:37Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error during setup to http://172.18.0.4:9000: Post \"http://172.18.0.4:9000/setup\": dial tcp 172.18.0.4:9000: connect: connection refused","time":"2024-05-13T15:02:37Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:02:37Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:38Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Setup fee878f0366ab5b78377a0ff101f4c2a514d6ef11f57135b6da932218e96f424","time":"2024-05-13T15:02:38Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Setup triggered","time":"2024-05-13T15:02:38Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"2 apps and server created and running","time":"2024-05-13T15:02:38Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:02:39Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:02:39Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:41Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:02:43Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:02:43Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:50Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:02:51Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:02:51Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:02:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:05Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:03:07Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:03:07Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:38Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:03:39Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"error","msg":"failed to setup, maybe the container got stuck during startup, last error: 502 Bad Gateway","time":"2024-05-13T15:03:39Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:03:39Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"error","msg":"failed to setup, maybe the container got stuck during startup, last error: 502 Bad Gateway","time":"2024-05-13T15:03:39Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Shutdown","time":"2024-05-13T15:03:39Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Shutdown","time":"2024-05-13T15:03:39Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Stopping test id: 1","time":"2024-05-13T15:03:39Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Stopping container fc_mi4peoplecare4rarefive1latest_685971507","time":"2024-05-13T15:03:39Z"}
+{"component":"GLOBAL","instance":"","level":"error","msg":"Participant (ID: 0a61c88b2a197426): relaying stopped due to: read tcp [::1]:9150-\u003e[::1]:35430: read: connection reset by peer","time":"2024-05-13T15:03:39Z"}
+{"component":"GLOBAL","instance":"","level":"error","msg":"Participant (ID: 88a45a7f79b700dd): relaying stopped due to: read tcp [::1]:9150-\u003e[::1]:35420: read: connection reset by peer","time":"2024-05-13T15:03:39Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to host","time":"2024-05-13T15:03:40Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:03:40Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:41Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:03:41Z"}
+{"component":"DOCKER","instance":"","level":"debug","msg":"Intermediary container used for moving data from volume to host has been removed","time":"2024-05-13T15:03:42Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Saved output volume content to /data/tests/results_test_1_client_0_fc_mi4peoplecare4rarefive1latest_685971507.zip","time":"2024-05-13T15:03:42Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_1_output_0_1715612544","time":"2024-05-13T15:03:42Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Deleted volume test_1_output_0_1715612544","time":"2024-05-13T15:03:42Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_1_input_0_1715612544","time":"2024-05-13T15:03:42Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Deleted volume test_1_input_0_1715612544","time":"2024-05-13T15:03:43Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Stopping container fc_mi4peoplecare4rarefive1latest_575921696","time":"2024-05-13T15:03:43Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to host","time":"2024-05-13T15:03:43Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:03:43Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:44Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:03:44Z"}
+{"component":"DOCKER","instance":"","level":"debug","msg":"Intermediary container used for moving data from volume to host has been removed","time":"2024-05-13T15:03:45Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Saved output volume content to /data/tests/results_test_1_client_1_fc_mi4peoplecare4rarefive1latest_575921696.zip","time":"2024-05-13T15:03:45Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_1_output_1_1715612551","time":"2024-05-13T15:03:45Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Deleted volume test_1_output_1_1715612551","time":"2024-05-13T15:03:45Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_1_input_1_1715612550","time":"2024-05-13T15:03:45Z"}
+{"component":"TESTBED","instance":"[Project: 1]","level":"info","msg":"Deleted volume test_1_input_1_1715612550","time":"2024-05-13T15:03:45Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:03:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:04:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:05:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:06:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:07:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:44Z"}
+{"component":"TESTBED","instance":"","level":"info","msg":"Create new test","time":"2024-05-13T15:08:45Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Create volumes and containers...","time":"2024-05-13T15:08:45Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_2_input_0_1715612925","time":"2024-05-13T15:08:45Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_2_output_0_1715612925","time":"2024-05-13T15:08:45Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Move data to workspace from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:08:45Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:08:45Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:08:46Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:47Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:08:47Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:08:48Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Move generic data to input volume from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:08:48Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:08:48Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:08:48Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:08:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:50Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:08:51Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Start application","time":"2024-05-13T15:08:51Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:08:51Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Append app to list","time":"2024-05-13T15:08:52Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_2_input_1_1715612932","time":"2024-05-13T15:08:52Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Create volume test_2_output_1_1715612932","time":"2024-05-13T15:08:52Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Move data to workspace from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:08:52Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:08:52Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:08:52Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:53Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:08:54Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:08:55Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Move generic data to input volume from /home/jadam/Workspace/MI4People_Care_4_Rare_Five1/data","time":"2024-05-13T15:08:55Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to workspace","time":"2024-05-13T15:08:55Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:08:55Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:56Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:08:56Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Intermediary container used for moving data from host to volume has been removed","time":"2024-05-13T15:08:57Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Start application","time":"2024-05-13T15:08:57Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:08:57Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Append app to list","time":"2024-05-13T15:08:59Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Link fc_mi4peoplecare4rarefive1latest_205621779 with global socket server","time":"2024-05-13T15:08:59Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Link fc_mi4peoplecare4rarefive1latest_906527861 with global socket server","time":"2024-05-13T15:08:59Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Start local socket server","time":"2024-05-13T15:08:59Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Start local socket server","time":"2024-05-13T15:08:59Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Link to global address","time":"2024-05-13T15:08:59Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Link to global address","time":"2024-05-13T15:08:59Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Registered new participant controller","time":"2024-05-13T15:08:59Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Registered new coordinator controller","time":"2024-05-13T15:08:59Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Received setup trigger","time":"2024-05-13T15:08:59Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Received setup trigger","time":"2024-05-13T15:08:59Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error during setup to http://172.18.0.4:9000: Post \"http://172.18.0.4:9000/setup\": dial tcp 172.18.0.4:9000: connect: connection refused","time":"2024-05-13T15:08:59Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:08:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:08:59Z"}
+{"component":"GLOBAL","instance":"","level":"info","msg":"Setup c1d029558d2d544d8e03be9227a244ace97c676e78d67f664a7f7b5bd57c21c5","time":"2024-05-13T15:09:00Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Setup triggered","time":"2024-05-13T15:09:00Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"2 apps and server created and running","time":"2024-05-13T15:09:00Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:01Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:01Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:02Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:05Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:11Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:13Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:13Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:26Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:29Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:09:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:09:59Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:10:01Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"error","msg":"failed to setup, maybe the container got stuck during startup, last error: 502 Bad Gateway","time":"2024-05-13T15:10:01Z"}
+{"component":"LOCAL","instance":"","level":"error","msg":"Got error code during setup: 502, 502 Bad Gateway","time":"2024-05-13T15:10:01Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"error","msg":"failed to setup, maybe the container got stuck during startup, last error: 502 Bad Gateway","time":"2024-05-13T15:10:01Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Shutdown","time":"2024-05-13T15:10:01Z"}
+{"component":"LOCAL","instance":"","level":"info","msg":"Shutdown","time":"2024-05-13T15:10:01Z"}
+{"component":"GLOBAL","instance":"","level":"error","msg":"Participant (ID: 6e4905b7beea4b97): relaying stopped due to: read tcp [::1]:9150-\u003e[::1]:44338: read: connection reset by peer","time":"2024-05-13T15:10:01Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Stopping test id: 2","time":"2024-05-13T15:10:01Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Stopping container fc_mi4peoplecare4rarefive1latest_205621779","time":"2024-05-13T15:10:01Z"}
+{"component":"GLOBAL","instance":"","level":"error","msg":"Participant (ID: c6062b637a5ddec0): relaying stopped due to: read tcp [::1]:9150-\u003e[::1]:44350: read: connection reset by peer","time":"2024-05-13T15:10:01Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to host","time":"2024-05-13T15:10:01Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:02Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:10:02Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:10:03Z"}
+{"component":"DOCKER","instance":"","level":"debug","msg":"Intermediary container used for moving data from volume to host has been removed","time":"2024-05-13T15:10:04Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Saved output volume content to /data/tests/results_test_2_client_0_fc_mi4peoplecare4rarefive1latest_205621779.zip","time":"2024-05-13T15:10:04Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_2_output_0_1715612925","time":"2024-05-13T15:10:04Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Deleted volume test_2_output_0_1715612925","time":"2024-05-13T15:10:04Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_2_input_0_1715612925","time":"2024-05-13T15:10:04Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Deleted volume test_2_input_0_1715612925","time":"2024-05-13T15:10:04Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Stopping container fc_mi4peoplecare4rarefive1latest_906527861","time":"2024-05-13T15:10:04Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Move data to host","time":"2024-05-13T15:10:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:05Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Attach to internal network","time":"2024-05-13T15:10:05Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove application","time":"2024-05-13T15:10:06Z"}
+{"component":"DOCKER","instance":"","level":"debug","msg":"Intermediary container used for moving data from volume to host has been removed","time":"2024-05-13T15:10:07Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Saved output volume content to /data/tests/results_test_2_client_1_fc_mi4peoplecare4rarefive1latest_906527861.zip","time":"2024-05-13T15:10:07Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_2_output_1_1715612932","time":"2024-05-13T15:10:07Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Deleted volume test_2_output_1_1715612932","time":"2024-05-13T15:10:07Z"}
+{"component":"DOCKER","instance":"","level":"info","msg":"Remove volume test_2_input_1_1715612932","time":"2024-05-13T15:10:07Z"}
+{"component":"TESTBED","instance":"[Project: 2]","level":"info","msg":"Deleted volume test_2_input_1_1715612932","time":"2024-05-13T15:10:07Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:32Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:35Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:38Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:41Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:44Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:47Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:50Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:53Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:56Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:10:59Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:02Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:05Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:08Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:11Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:14Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:17Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:20Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:23Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:26Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:29Z"}
+{"component":"FLOW","instance":"","level":"error","msg":"Error getting workflow data: [WARNING][SITE] No site is registered. Please create a site in the frontend","time":"2024-05-13T15:11:32Z"}

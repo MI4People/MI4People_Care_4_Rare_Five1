@@ -1,0 +1,10 @@
+id: 2
+image: mi4people_care_4_rare_five1:latest
+createdat: 2024-05-13T15:08:45.765142044Z
+relayaddress: localhost
+queryinterval: 1
+dirs:
+- .
+- .
+gendir: .
+resultdir: /data/tests

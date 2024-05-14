@@ -1,0 +1,55 @@
+2024-05-13 15:08:58,288 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-13 15:08:58,289 INFO supervisord started with pid 7
+2024-05-13 15:08:59,291 INFO spawned: 'app' with pid 8
+2024-05-13 15:08:59,292 INFO spawned: 'nginx' with pid 9
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:09:00,447 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:09:00,447 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:09:00,447 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:09:01,449 INFO spawned: 'app' with pid 49
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:09:02,597 INFO success: app entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-05-13 15:09:02,597 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:09:03,601 INFO spawned: 'app' with pid 69
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:09:03,767 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:09:04,771 INFO spawned: 'app' with pid 89
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:09:04,940 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:09:06,945 INFO spawned: 'app' with pid 109
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:09:07,123 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:09:10,128 INFO spawned: 'app' with pid 129
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:09:10,257 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:09:11,259 INFO gave up: app entered FATAL state, too many start retries too quickly

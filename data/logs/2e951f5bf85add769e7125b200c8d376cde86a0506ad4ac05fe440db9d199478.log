@@ -1,0 +1,37 @@
+2024-05-13 15:02:36,917 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-05-13 15:02:36,918 INFO supervisord started with pid 6
+2024-05-13 15:02:37,921 INFO spawned: 'app' with pid 7
+2024-05-13 15:02:37,922 INFO spawned: 'nginx' with pid 8
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:38,056 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:39,059 INFO spawned: 'app' with pid 48
+2024-05-13 15:02:39,060 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:39,250 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:41,256 INFO spawned: 'app' with pid 68
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:41,435 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:44,440 INFO spawned: 'app' with pid 88
+Traceback (most recent call last):
+  File "/app/main.py", line 8, in <module>
+    import states
+  File "/app/states.py", line 5, in <module>
+    from data_fetching import DataFetcher, ValidationDataFetcher
+ModuleNotFoundError: No module named 'data_fetching'
+2024-05-13 15:02:44,603 WARN exited: app (exit status 1; not expected)
+2024-05-13 15:02:45,605 INFO gave up: app entered FATAL state, too many start retries too quickly
