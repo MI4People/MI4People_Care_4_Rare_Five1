@@ -14,8 +14,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.preprocessing import MultiLabelBinarizer
 
-from utils import read_config,write_output,ResultRow,CSVResultsBuilder
-
+from utils import read_config,write_output
+# ,CSVResultsBuilder,ResultRow
 from FeatureCloud.app.engine.app import AppState, app_state
 
 logging.basicConfig(level=logging.INFO)
@@ -45,7 +45,7 @@ class ExecuteState(AppState):
         driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
 
         # Result
-        result = CSVResultsBuilder()
+        # result = CSVResultsBuilder()
 
         # Create a driver session with defined DB
         with driver.session(database=NEO4J_DB) as session:
