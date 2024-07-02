@@ -1,6 +1,6 @@
 
 ### PLEASE ADJUST THIS TO MATCH YOUR DEFINED APP NAME
-DOCKER_IMAGE_NAME=my_neo4j_counting_app
+DOCKER_IMAGE_NAME=mi4-people-care-4-rare-five1
 
 
 ### All these Values should be correctly preconfigured
