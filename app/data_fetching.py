@@ -53,17 +53,17 @@ def get_subject_metrics(session, subjectId):
     WITH bs,
         // Aggregations for Proteins
         COUNT(DISTINCT CASE WHEN r_protein IS NOT NULL THEN r_protein END) AS numProteins,
-        AVG(CASE WHEN r_protein IS NOT NULL THEN r_protein.score END) AS avgProteinScore,
-        MIN(CASE WHEN r_protein IS NOT NULL THEN r_protein.score END) AS minProteinScore,
-        MAX(CASE WHEN r_protein IS NOT NULL THEN r_protein.score END) AS maxProteinScore,
-        SUM(CASE WHEN r_protein IS NOT NULL THEN r_protein.score END) AS sumProteinScore,
+        AVG(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS avgProteinScore,
+        MIN(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS minProteinScore,
+        MAX(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS maxProteinScore,
+        SUM(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS sumProteinScore,
 
         // Aggregations for Genes
         COUNT(DISTINCT CASE WHEN r_damage IS NOT NULL THEN r_damage END) AS numGenes,
-        AVG(CASE WHEN r_damage IS NOT NULL THEN r_damage.score END) AS avgGeneScore,
-        MIN(CASE WHEN r_damage IS NOT NULL THEN r_damage.score END) AS minGeneScore,
-        MAX(CASE WHEN r_damage IS NOT NULL THEN r_damage.score END) AS maxGeneScore,
-        SUM(CASE WHEN r_damage IS NOT NULL THEN r_damage.score END) AS sumGeneScore,
+        AVG(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS avgGeneScore,
+        MIN(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS minGeneScore,
+        MAX(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS maxGeneScore,
+        SUM(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS sumGeneScore,
 
         // Count of Phenotypes
         COUNT(DISTINCT r_phenotype) AS numPhenotypes
