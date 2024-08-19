@@ -1,6 +1,19 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import (
+    confusion_matrix,
+    precision_score,
+    recall_score,
+    f1_score,
+    roc_auc_score,
+)
+from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.preprocessing import MultiLabelBinarizer
 
@@ -21,7 +34,7 @@ testdf format:
 """
 
 
-def randomForestA(df, testdf):
+def classificationA(df, testdf, classifier=RandomForestClassifier()):
     # One-hot encode the phenotypes
     mlb = MultiLabelBinarizer()
     encoded_phenotypes = pd.DataFrame(
@@ -40,7 +53,7 @@ def randomForestA(df, testdf):
     X_train, y_train = df.drop(["isSick", "icdFirstLetter"], axis=1), df["isSick"]
 
     # Train a Random Forest classifier
-    clf = RandomForestClassifier(n_estimators=100, random_state=42)
+    clf = classifier
     clf.fit(X_train.drop(columns=["subjectId"]), y_train)
 
     # Make predictions on the test set
@@ -63,7 +76,7 @@ def randomForestA(df, testdf):
     return results_df
 
 
-def randomForestB(df, testdf):
+def classificationB(df, testdf, classifier, param_grid={}):
     # Remove the control subjects and no ICD10 code subjects
     df = df[~df["icdFirstLetter"].isin(["CTL", "NC"])]
     # One-hot encode the phenotypes
@@ -87,7 +100,7 @@ def randomForestB(df, testdf):
     )
 
     # Train a Random Forest classifier
-    clf = RandomForestClassifier(n_estimators=100, random_state=42)
+    clf = classifier
     clf.fit(X_train.drop(columns=["subjectId"]), y_train)
 
     # Make predictions on the test set
@@ -99,8 +112,7 @@ def randomForestB(df, testdf):
     expanded_df = testdf["subjectMetrics"].apply(pd.Series)
     # Join the expanded DataFrame with the original DataFrame
     testdf = pd.concat([testdf.drop(["subjectMetrics"], axis=1), expanded_df], axis=1)
-
-    y_pred = clf.predict(testdf.drop(columns=["subjectId"], axis=1))
+    y_pred = clf.predict(testdf.drop(columns=["subjectId"]))
 
     # Print a classification report
     # logger.info(f"Results Task A {classification_report(y_test, y_pred)}")

@@ -3,15 +3,27 @@ import time
 import os
 import logging
 from data_fetching import DataFetcher, ValidationDataFetcher
-from model_trainer import randomForestA, randomForestB
+from model_trainer import classificationA, classificationB
 
 from neo4j import GraphDatabase, Query, Record
 from neo4j.exceptions import ServiceUnavailable
 from pandas import DataFrame
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import (
+    confusion_matrix,
+    precision_score,
+    recall_score,
+    f1_score,
+    roc_auc_score,
+)
+from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import MultiLabelBinarizer
 
 from utils import read_config, write_output
@@ -73,13 +85,27 @@ class ExecuteState(AppState):
         testdf_A = testdf[["subjectId", "phenotypes", "subjectMetrics"]]
         testdf_B = testdf[["subjectId", "phenotypes", "subjectMetrics"]]
 
-        result_A = randomForestA(df_A, testdf_A)
-        logger.info(f"Results Task A: {result_A}")
-        result_A.to_csv(f"{OUTPUT_DIR}/results_task_A.csv", index=False)
+        classifiers_dict = {
+            "RandomForestClassifier": RandomForestClassifier(),
+            "GradientBoostingClassifier": GradientBoostingClassifier(),
+            "DecisionTreeClassifier": DecisionTreeClassifier(),
+            "KNeighborsClassifier": KNeighborsClassifier(),
+            "SVC": SVC(),
+            "LogisticRegression": LogisticRegression(),
+        }
 
-        result_B = randomForestB(df_B, testdf_B)
-        logger.info(f"Results Task B: {result_B}")
-        result_B.to_csv(f"{OUTPUT_DIR}/results_task_B.csv", index=False)
+        for classifier_name, classifier in classifiers_dict.items():
+            resultA = classificationA(df, testdf, classifier)
+            logger.info(f"Results Task A: {resultA}")
+            resultA.to_csv(
+                f"{OUTPUT_DIR}/results_task_A_{classifier_name}.csv", index=False
+            )
+
+            resultB = classificationB(df, testdf, classifier)
+            logger.info(f"Results Task B: {resultB}")
+            resultB.to_csv(
+                f"{OUTPUT_DIR}/results_task_B_{classifier_name}.csv", index=False
+            )
 
         # Close the driver connection
         driver.close()
