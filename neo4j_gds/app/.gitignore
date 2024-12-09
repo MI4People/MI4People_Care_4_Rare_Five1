@@ -1,0 +1,6 @@
+.idea
+venv
+*.pyc
+config.yml
+testing.ipynb
+data/*

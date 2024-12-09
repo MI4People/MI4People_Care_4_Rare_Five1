@@ -1,0 +1,100 @@
+Kernel: graphlet, Classifier: SVM
+Letter   Predicted Letter y_test   y_pred  
+==============================
+C        C        0        0       
+I        C        5        0       
+I        C        5        0       
+C        C        0        0       
+C        C        0        0       
+I        C        5        0       
+I        C        5        0       
+I        C        5        0       
+D        C        1        0       
+R        C        10       0       
+K        C        7        0       
+C        C        0        0       
+J        C        6        0       
+C        C        0        0       
+C        C        0        0       
+E        C        2        0       
+J        C        6        0       
+C        C        0        0       
+D        C        1        0       
+K        C        7        0       
+
+==================================================
+Kernel: graphlet, Classifier: RandomForest
+Letter   Predicted Letter y_test   y_pred  
+==============================
+C        C        0        0       
+I        J        5        6       
+I        C        5        0       
+C        J        0        6       
+C        R        0        10      
+I        C        5        0       
+I        D        5        1       
+I        C        5        0       
+D        I        1        5       
+R        I        10       5       
+K        J        7        6       
+C        I        0        5       
+J        D        6        1       
+C        M        0        9       
+C        J        0        6       
+E        J        2        6       
+J        C        6        0       
+C        I        0        5       
+D        J        1        6       
+K        J        7        6       
+
+==================================================
+Kernel: wl, Classifier: SVM
+Letter   Predicted Letter y_test   y_pred  
+==============================
+C        C        0        0       
+I        C        5        0       
+I        C        5        0       
+C        C        0        0       
+C        C        0        0       
+I        C        5        0       
+I        C        5        0       
+I        C        5        0       
+D        C        1        0       
+R        C        10       0       
+K        C        7        0       
+C        C        0        0       
+J        C        6        0       
+C        C        0        0       
+C        C        0        0       
+E        C        2        0       
+J        C        6        0       
+C        C        0        0       
+D        C        1        0       
+K        C        7        0       
+
+==================================================
+Kernel: wl, Classifier: RandomForest
+Letter   Predicted Letter y_test   y_pred  
+==============================
+C        C        0        0       
+I        J        5        6       
+I        C        5        0       
+C        C        0        0       
+C        C        0        0       
+I        C        5        0       
+I        C        5        0       
+I        J        5        6       
+D        J        1        6       
+R        I        10       5       
+K        C        7        0       
+C        J        0        6       
+J        J        6        6       
+C        C        0        0       
+C        C        0        0       
+E        J        2        6       
+J        C        6        0       
+C        C        0        0       
+D        J        1        6       
+K        J        7        6       
+
+==================================================
