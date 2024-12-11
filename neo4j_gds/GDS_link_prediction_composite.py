@@ -267,7 +267,8 @@ gds.run_cypher("""CALL gds.fastRP.mutate("test_graph",
 
 #%%
 # configure the link prediction pipeline using GraphSAGE node embeddings
-# GraphSAGE - train GraphSAGE on FastRP node embeddings outside of the pipeline 
+# GraphSAGE - train GraphSAGE on FastRP node embeddings outside of the pipeline
+# # training GraphSAGE model requires featureProperties (e.g. fastRP, community, degree, etc.) 
 
 if gds.run_cypher("""CALL gds.model.exists('graphsage') YIELD exists""").iloc[0,0]==True:
     gds.run_cypher("""CALL gds.model.drop('graphsage')""")
@@ -373,6 +374,8 @@ if gds.run_cypher("""CALL gds.pipeline.exists('pipe_fastrp') YIELD exists""").il
 gds.beta.pipeline.linkPrediction.create('pipe_fastrp')
 
 # add node property
+# for inductive link prediction with FastRP node embeddings, propertyRatio = 1.0 and a random seed are required
+# -> positive value of propertyRatio requires featureProperties to be non-empty (here: 'community' and 'degree')
 gds.run_cypher(""" CALL gds.beta.pipeline.linkPrediction.addNodeProperty('pipe_fastrp', 'fastRP', {
     mutateProperty: 'fastRP_2',
     embeddingDimension: 256,
@@ -457,8 +460,10 @@ if gds.run_cypher("""CALL gds.pipeline.exists('pipe_hashgnn') YIELD exists""").i
 # create pipeline
 gds.beta.pipeline.linkPrediction.create('pipe_hashgnn')
 
-# add node property; HashGNN works on binary features -> use generateFeatures to create binary features
-
+# add node property; HashGNN works on binary features, i.e. featureProperties
+# for inductive link prediction with HashGNN, featureProperties and randomSeed are required
+# use generateFeatures to create binary features (~ featureProperties)
+# define contextNodeLabels and contextRelationshipTypes to facilitate model training
 gds.run_cypher("""CALL gds.beta.pipeline.linkPrediction.addNodeProperty('pipe_hashgnn', 'hashgnn', {
                mutateProperty: 'hashgnn',
                iterations: 2,
