@@ -25,7 +25,7 @@ class WeisfeilerLehmanWrapperA(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_isSick_test = self.transform(X)
         y_isSick_pred = self.clf.predict(K_isSick_test)
-        return matthews_corrcoef(y, y_isSick_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_isSick_pred)  # Return MCC as the score
 
 # Custom wrapper for Graphlet Sampling kernel
 class GraphletSamplingWrapperA(BaseEstimator, TransformerMixin):
@@ -48,7 +48,7 @@ class GraphletSamplingWrapperA(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_isSick_test = self.transform(X)
         y_isSick_pred = self.clf.predict(K_isSick_test)
-        return matthews_corrcoef(y, y_isSick_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_isSick_pred)  # Return MCC as the score
 
     
 # Custom wrapper for Subgraph Matching kernel
@@ -72,7 +72,7 @@ class SubgraphMatchingWrapperA(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_isSick_test = self.transform(X)
         y_isSick_pred = self.clf.predict(K_isSick_test)
-        return matthews_corrcoef(y, y_isSick_pred)  # Return accuracy
+        return matthews_corrcoef(y, y_isSick_pred)  # Return MCC as the score
 
 
 # Custom wrapper for Weisfeiler-Lehman Optimal Assignment kernel
@@ -96,7 +96,7 @@ class WeisfeilerLehmanOAWrapperA(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_isSick_test = self.transform(X)
         y_isSick_pred = self.clf.predict(K_isSick_test)
-        return matthews_corrcoef(y, y_isSick_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_isSick_pred)  # Return MCC as the score
 
 # Custom wrapper for NeighborhoodSubgraphPairwiseDistance kernel
 class NeighborhoodSubgraphPairwiseDistanceWrapperA(BaseEstimator, TransformerMixin):
@@ -120,7 +120,7 @@ class NeighborhoodSubgraphPairwiseDistanceWrapperA(BaseEstimator, TransformerMix
     def score(self, X, y):
         K_isSick_test = self.transform(X)
         y_isSick_pred = self.clf.predict(K_isSick_test)
-        return matthews_corrcoef(y, y_isSick_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_isSick_pred)  # Return MCC as the score
 
 
 # Custom wrapper for Weisfeiler-Lehman kernel
@@ -144,7 +144,7 @@ class WeisfeilerLehmanWrapperB(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_icd10_test = self.transform(X)
         y_icd10_pred = self.clf.predict(K_icd10_test)
-        return matthews_corrcoef(y, y_icd10_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_icd10_pred)  # Return MCC as the score
 
 # Custom wrapper for Graphlet Sampling kernel
 class GraphletSamplingWrapperB(BaseEstimator, TransformerMixin):
@@ -167,7 +167,7 @@ class GraphletSamplingWrapperB(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_icd10_test = self.transform(X)
         y_icd10_pred = self.clf.predict(K_icd10_test)
-        return matthews_corrcoef(y, y_icd10_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_icd10_pred)  # Return MCC as the score
 
     
 # Custom wrapper for Subgraph Matching kernel
@@ -191,7 +191,7 @@ class SubgraphMatchingWrapperB(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_icd10_test = self.transform(X)
         y_icd10_pred = self.clf.predict(K_icd10_test)
-        return matthews_corrcoef(y, y_icd10_pred)  # Return accuracy
+        return matthews_corrcoef(y, y_icd10_pred)  # Return MCC as the score
 
 
 # Custom wrapper for Weisfeiler-Lehman Optimal Assignment kernel
@@ -215,7 +215,7 @@ class WeisfeilerLehmanOAWrapperB(BaseEstimator, TransformerMixin):
     def score(self, X, y):
         K_icd10_test = self.transform(X)
         y_icd10_pred = self.clf.predict(K_icd10_test)
-        return matthews_corrcoef(y, y_icd10_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_icd10_pred)  # Return MCC as the score
 
 # Custom wrapper for NeighborhoodSubgraphPairwiseDistance kernel
 class NeighborhoodSubgraphPairwiseDistanceWrapperB(BaseEstimator, TransformerMixin):
@@ -239,4 +239,4 @@ class NeighborhoodSubgraphPairwiseDistanceWrapperB(BaseEstimator, TransformerMix
     def score(self, X, y):
         K_icd10_test = self.transform(X)
         y_icd10_pred = self.clf.predict(K_icd10_test)
-        return matthews_corrcoef(y, y_icd10_pred)  # Return accuracy as the score
+        return matthews_corrcoef(y, y_icd10_pred)  # Return MCC as the score

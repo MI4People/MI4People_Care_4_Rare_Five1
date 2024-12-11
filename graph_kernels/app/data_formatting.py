@@ -31,8 +31,10 @@ def transform_B_for_grakel(graphs_icd10):
                 node_labels = graph['nodes']  # Nodes are already in the correct format
                 edge_labels = graph['edge_labels']
 
+                edges_list = [(edge[0], edge[1], edge[2]) for edge in edges]
+
                 # Append the graph to the list in the format grakel expects
-                grakel_graph = Graph(initialization_object=edges, node_labels=node_labels, edge_labels=edge_labels)
+                grakel_graph = Graph(initialization_object=edges_list, node_labels=node_labels, edge_labels=edge_labels)
                 grakel_icd10.append(grakel_graph)
                 
                 # Append the label (isSick) to the labels list

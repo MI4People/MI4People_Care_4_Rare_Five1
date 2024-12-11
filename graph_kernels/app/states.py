@@ -71,18 +71,17 @@ class ExecuteState(AppState):
         # Step 1: Kernel Tuning
         logger.info("Task A - Step 1: Kernel Tuning")
         kernels_A = {
+            'SubgraphMatching': SubgraphMatchingWrapperA(),
             'WeisfeilerLehman': WeisfeilerLehmanWrapperA(),
             'WeisfeilerLehmanOptimalAssignment': WeisfeilerLehmanOAWrapperA(),
             'GraphletSampling': GraphletSamplingWrapperA(),
-            'NeighborhoodSubgraphPairwiseDistance': NeighborhoodSubgraphPairwiseDistanceWrapperA(),
-            'SubgraphMatching': SubgraphMatchingWrapperA()
-            
+            'NeighborhoodSubgraphPairwiseDistance': NeighborhoodSubgraphPairwiseDistanceWrapperA()              
         }
 
         kernel_param_grids_A = {
+            'SubgraphMatching': {'k': [1, 3, 5]},
             'WeisfeilerLehman': {'n_iter': [1, 3, 5]},
             'GraphletSampling': {'n_samples': [50, 100, 200, 500]},
-            'SubgraphMatching': {'k': [3, 5, 7, 10]},
             'WeisfeilerLehmanOptimalAssignment': {'n_iter': [1, 3, 5]},
             'NeighborhoodSubgraphPairwiseDistance': {'r': [3, 5, 7], 'd': [3, 4, 5, 7]}
         }
@@ -90,6 +89,8 @@ class ExecuteState(AppState):
 
         best_kernels_A = {}
         for kernel_name, kernel in kernels_A.items():
+            grakel_isSick, a = transform_A_for_grakel(graphs_isSick)
+            X_isSick_train, X_isSick_test, y_isSick_train, y_isSick_test =train_test_split(grakel_isSick, a, test_size=0.2, random_state=42)
             logger.info(f"Tuning kernel: {kernel_name}")
             cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
             grid_search_kernel = GridSearchCV(estimator=kernel, param_grid=kernel_param_grids_A[kernel_name], cv=cv)
@@ -113,8 +114,8 @@ class ExecuteState(AppState):
             'GradientBoostingClassifier': GradientBoostingClassifier(),
             'DecisionTreeClassifier': DecisionTreeClassifier(random_state=42),	
             'KNeighborsClassifier': KNeighborsClassifier(),
-            'LogisticRegression': LogisticRegression(random_state=42)
-            #'SVC': SVC(kernel="precomputed")
+            'LogisticRegression': LogisticRegression(random_state=42),
+            'SVC': SVC(kernel="precomputed")
         }
 
         classifier_param_grids = {
@@ -150,6 +151,8 @@ class ExecuteState(AppState):
 
         results_A = {}
         for kernel_name, kernel_info in best_kernels_A.items():
+            grakel_isSick, a = transform_A_for_grakel(graphs_isSick)
+            X_isSick_train, X_isSick_test, y_isSick_train, y_isSick_test =train_test_split(grakel_isSick, a, test_size=0.2, random_state=42)
             best_kernel = kernel_info['best_estimator']
             K_isSick_train = best_kernel.fit_transform(X_isSick_train)
             K_isSick_test = best_kernel.transform(X_isSick_test)
@@ -304,13 +307,17 @@ class ExecuteState(AppState):
         kernel_param_grids_B = {
             'WeisfeilerLehman': {'n_iter': [1, 3, 5]},
             'GraphletSampling': {'n_samples': [500, 1000, 2500]},
-            'SubgraphMatching': {'k': [3, 5, 7, 10]},
+            'SubgraphMatching': {'k': [1, 3, 5]},
             'WeisfeilerLehmanOptimalAssignment': {'n_iter': [1, 3, 5]},
             'NeighborhoodSubgraphPairwiseDistance': {'r': [3, 5, 7], 'd': [3, 4, 5, 7]}
         }
 
         best_kernels_B = {}
         for kernel_name, kernel in kernels_B.items():
+            grakel_icd10, b = transform_B_for_grakel(graphs_icd10)
+            label_encoder = LabelEncoder()
+            b = label_encoder.fit_transform(b)
+            X_icd10_train, X_icd10_test, y_icd10_train, y_icd10_test = train_test_split(grakel_icd10, b, test_size=0.2, random_state=42)
             logger.info(f"Tuning kernel: {kernel_name}")
             cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
             grid_search_kernel = GridSearchCV(estimator=kernel, param_grid=kernel_param_grids_B[kernel_name], cv=cv)
@@ -333,6 +340,10 @@ class ExecuteState(AppState):
         logger.info("Task B - Step 2: Classifier Tuning for tuned kernels")
         results_B = {}
         for kernel_name, kernel_info in best_kernels_B.items():
+            grakel_icd10, b = transform_B_for_grakel(graphs_icd10)
+            label_encoder = LabelEncoder()
+            b = label_encoder.fit_transform(b)
+            X_icd10_train, X_icd10_test, y_icd10_train, y_icd10_test = train_test_split(grakel_icd10, b, test_size=0.2, random_state=42)
             best_kernel = kernel_info['best_estimator']
             K_icd10_train = best_kernel.fit_transform(X_icd10_train)
             K_icd10_test = best_kernel.transform(X_icd10_test)
@@ -454,5 +465,6 @@ class ExecuteState(AppState):
         logger.info(f"Results saved to {OUTPUT_DIR}/{taskB_best_combination}")
 
         logger.info("Task B completed successfully") 
-               
+
+        driver.close()
         return "terminal"
