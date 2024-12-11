@@ -71,6 +71,26 @@ class ExecuteState(AppState):
                 """)
         patients_overlap = pd.DataFrame(patients_overlap)
 
+        # may be interesting for Graph Kernel Hyperparameter tuning, e. g. k in SubgraphMatching
+        # -> how many overlapping nodes are there between 'patient subgraph representations'/ range of min and max overlapping nodes
+        logger.info("Return the number of overlapping nodes between 'patient subgraph representations'")
+        patient_subgraph_overlap = gds.run_cypher("""MATCH (n:Biological_sample)-[r]->(m)
+                WHERE m:Phenotype OR m:Gene OR m:Protein
+                WITH n, COLLECT(DISTINCT m) AS m_nodes
+                MATCH (n:Biological_sample)-[r]->(m)
+                WHERE m:Phenotype OR m:Gene OR m:Protein
+                WITH n, COLLECT(DISTINCT m) AS m_nodes
+                WITH n AS sample1, m_nodes AS m_nodes1
+                MATCH (n2:Biological_sample)-[r]->(m)
+                WHERE m:Phenotype OR m:Gene OR m:Protein
+                WITH sample1, m_nodes1, n2 AS sample2, COLLECT(DISTINCT m) AS m_nodes2
+                WHERE id(sample1) < id(sample2) // Prevent duplicate comparisons
+                WITH sample1, sample2, apoc.coll.intersection(m_nodes1, m_nodes2) AS overlap
+                RETURN id(sample1) AS Sample1, id(sample2) AS Sample2, SIZE(overlap) AS OverlapCount
+                ORDER BY OverlapCount DESC""")
+        patient_subgraph_overlap = pd.DataFrame(patient_subgraph_overlap)
+
+
         # identify proteins/ genes that may serve as biomarker for individual diseases
         logger.info("Identify potential biomarkers")
         diseases = gds.run_cypher("""MATCH(n:Disease)-[r:ASSOCIATED_WITH|IS_BIOMARKER_OF_DISEASE]-(m)
@@ -131,6 +151,7 @@ class ExecuteState(AppState):
             store['nodes_per_patient'] = nodes_per_patient
             store['source_target'] = source_target
             store['patients_overlap'] = patients_overlap
+            store['patient_subgraph_overlap'] = patient_subgraph_overlap
             store['diseases_overlap'] = diseases
             store['proteins_overlap'] = proteins
             store['links_per_node'] = links_per_node

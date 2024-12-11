@@ -55,6 +55,25 @@ patients_overlap = gds.run_cypher("""MATCH(n:Biological_sample)--(m)
 patients_overlap = pd.DataFrame(patients_overlap)
 
 #%%
+# may be interesting for Graph Kernel Hyperparameter tuning, e. g. k in SubgraphMatching
+# -> how many overlapping nodes are there between 'patient subgraph representations'/ range of min and max overlapping nodes
+patient_subgraph_overlap = gds.run_cypher("""MATCH (n:Biological_sample)-[r]->(m)
+        WHERE m:Phenotype OR m:Gene OR m:Protein
+        WITH n, COLLECT(DISTINCT m) AS m_nodes
+        MATCH (n:Biological_sample)-[r]->(m)
+        WHERE m:Phenotype OR m:Gene OR m:Protein
+        WITH n, COLLECT(DISTINCT m) AS m_nodes
+        WITH n AS sample1, m_nodes AS m_nodes1
+        MATCH (n2:Biological_sample)-[r]->(m)
+        WHERE m:Phenotype OR m:Gene OR m:Protein
+        WITH sample1, m_nodes1, n2 AS sample2, COLLECT(DISTINCT m) AS m_nodes2
+        WHERE id(sample1) < id(sample2) // Prevent duplicate comparisons
+        WITH sample1, sample2, apoc.coll.intersection(m_nodes1, m_nodes2) AS overlap
+        RETURN id(sample1) AS Sample1, id(sample2) AS Sample2, SIZE(overlap) AS OverlapCount
+        ORDER BY OverlapCount DESC""")
+patient_subgraph_overlap = pd.DataFrame(patient_subgraph_overlap)
+
+#%%
 # identify proteins/ genes that may serve as biomarker for individual diseases
 diseases = gds.run_cypher("""MATCH(n:Disease)-[r:ASSOCIATED_WITH|IS_BIOMARKER_OF_DISEASE|MAPS_TO]-(m)
         WHERE m:Protein OR m:Gene OR m:Phenotype
