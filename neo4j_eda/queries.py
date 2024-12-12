@@ -134,6 +134,7 @@ with pd.HDFStore(f'queries_output.h5') as store:
     store['nodes_per_patient'] = nodes_per_patient
     store['source_target'] = source_target
     store['patients_overlap'] = patients_overlap
+    store['patient_subgraph_overlap'] = patient_subgraph_overlap
     store['diseases_overlap'] = diseases
     store['proteins_overlap'] = proteins
     store['links_per_node'] = links_per_node
