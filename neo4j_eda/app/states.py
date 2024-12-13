@@ -125,15 +125,20 @@ class ExecuteState(AppState):
         proteins = pd.DataFrame(proteins)
 
         # identify potential hubs among patients, genes, proteins, diseases, and phenotypes
-        # for now, only considered source and target nodes that where also consider for GDS link prediction 
+        # for now, only considered source & target nodes and relationships (+ MAPS_TO) that where also consider for GDS link prediction 
         # -> may be extended according to individual needs
+        # excluded for now since highly computational expensive
         logger.info("Identify potential node hubs by returning relationships per node for the most interesting node labels")
-        links_per_node = gds.run_cypher("""MATCH (m)-[r]->(n)
-                WHERE m:Biological_sample OR m:Protein OR m:Disease OR m:Gene OR m:Phenotype OR n:Biological_sample OR n:Protein OR n:Disease OR n:Gene OR n:Phenotype
-                WITH m, n, COUNT(DISTINCT n) AS rel_count
-                RETURN labels(m) as node_type, id(m) as node_id, rel_count
+        links_per_node = gds.run_cypher("""MATCH (m)
+                WHERE m:Biological_sample
+                OPTIONAL MATCH (m)-->(n)
+                WHERE n:Biological_sample OR n:Protein OR n:Gene OR n:Phenotype OR n:Disease
+                MATCH (n)-[r:HAS_PHENOTYPE|HAS_DAMAGE|HAS_PARENT|HAS_QUANTIFIED_PROTEIN|COMPILED_INTERACTS_WITH|HAS_DISEASE|IS_BIOMARKER_OF_DISEASE|MAPS_TO]->(q)
+                WHERE q:Biological_sample OR q:Protein OR q:Gene OR q:Phenotype OR q:Disease
+                WITH n, COUNT(DISTINCT q) as rel_count
+                RETURN labels(n) as node_type, id(n) as node_id, rel_count
                 ORDER BY rel_count DESC
-                """)
+               """)
         links_per_node = pd.DataFrame(links_per_node)
 
         # how many diseases are associated with each patient -> ideally only one disease per patient
