@@ -71,19 +71,19 @@ class ExecuteState(AppState):
         # Step 1: Kernel Tuning
         logger.info("Task A - Step 1: Kernel Tuning")
         kernels_A = {
-            'SubgraphMatching': SubgraphMatchingWrapperA(),
             'WeisfeilerLehman': WeisfeilerLehmanWrapperA(),
             'WeisfeilerLehmanOptimalAssignment': WeisfeilerLehmanOAWrapperA(),
             'GraphletSampling': GraphletSamplingWrapperA(),
-            'NeighborhoodSubgraphPairwiseDistance': NeighborhoodSubgraphPairwiseDistanceWrapperA()              
+            'NeighborhoodSubgraphPairwiseDistance': NeighborhoodSubgraphPairwiseDistanceWrapperA(),
+            'SubgraphMatching': SubgraphMatchingWrapperA()              
         }
 
         kernel_param_grids_A = {
-            'SubgraphMatching': {'k': [1, 3, 5]},
             'WeisfeilerLehman': {'n_iter': [1, 3, 5]},
             'GraphletSampling': {'n_samples': [50, 100, 200, 500]},
             'WeisfeilerLehmanOptimalAssignment': {'n_iter': [1, 3, 5]},
-            'NeighborhoodSubgraphPairwiseDistance': {'r': [3, 5, 7], 'd': [3, 4, 5, 7]}
+            'NeighborhoodSubgraphPairwiseDistance': {'r': [3, 5, 7], 'd': [3, 4, 5, 7]},
+            'SubgraphMatching': {'k': [5]}
         }
 
 
@@ -307,7 +307,7 @@ class ExecuteState(AppState):
         kernel_param_grids_B = {
             'WeisfeilerLehman': {'n_iter': [1, 3, 5]},
             'GraphletSampling': {'n_samples': [500, 1000, 2500]},
-            'SubgraphMatching': {'k': [1, 3, 5]},
+            'SubgraphMatching': {'k': [5]},
             'WeisfeilerLehmanOptimalAssignment': {'n_iter': [1, 3, 5]},
             'NeighborhoodSubgraphPairwiseDistance': {'r': [3, 5, 7], 'd': [3, 4, 5, 7]}
         }
