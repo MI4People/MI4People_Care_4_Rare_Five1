@@ -142,7 +142,7 @@ class ExecuteState(AppState):
         links_per_node = pd.DataFrame(links_per_node)
 
         # how many diseases are associated with each patient -> ideally only one disease per patient
-        logger("Return the number of diseases assigned to each patient")
+        logger.info("Return the number of diseases assigned to each patient")
         patients_diseases = gds.run_cypher("""MATCH (n:Biological_sample)
                 OPTIONAL MATCH (n)-[:HAS_DISEASE]-(m:Disease)
                 RETURN labels(n) as patient, id(n) as patient_id, CASE WHEN m.id IS NULL THEN "NaN" ELSE labels(m) END as disease, CASE WHEN m.id IS NULL THEN 0 ELSE COUNT(DISTINCT m.id) END as num_disease
