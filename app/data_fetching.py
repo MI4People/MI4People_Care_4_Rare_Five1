@@ -89,7 +89,9 @@ def get_subject_metrics(session, subjectId):
 class DataFetcher:
     def __init__(self, session):
         self.session = session
-        self.subjects = self.fetch()
+        # self.subjects = self.fetch()
+        self.ill_subjects = self.get_ill_subjects(self.session)
+        self.control_subject = self.get_control_subjects(self.session)
     
     def fetch(self):
         subjects = self.get_subjects(self.session)
@@ -98,12 +100,37 @@ class DataFetcher:
             subject.subjectMetrics = get_subject_metrics(self.session, subject.subjectId).subjectMetrics
         return subjects
 
+    # Fetches all subjects with their diseases and ICD10 codes
+    # Only returns subjects with diseases but every subject has a Disease node
+    # In case of healthy subjects the node Disease contains the value 'control'
     def get_subjects(self, session):
         query = """MATCH (b:Biological_sample)-->(d:Disease)
     WITH *, [s in d.synonyms WHERE s STARTS WITH "ICD10CM" | s] as ICD10
     RETURN b.subjectid as subjectId, d.name as disease, ICD10[0] as icd10"""     
         data = session.run(query).data()
         subjects = [Subject(**record) for record in data]
+        return subjects
+    
+    def get_ill_subjects(self, session):
+        query = """MATCH (b:Biological_sample)-->(d:Disease)
+    WITH *, [s in d.synonyms WHERE s STARTS WITH "ICD10CM" | s] as ICD10
+    RETURN b.subjectid as subjectId, d.name as disease, ICD10[0] as icd10"""     
+        data = session.run(query).data()
+        subjects = [Subject(**record) for record in data]
+        for subject in subjects:
+            subject.phenotypes = get_phenotypes(self.session, subject.subjectId).phenotypes
+            subject.subjectMetrics = get_subject_metrics(self.session, subject.subjectId).subjectMetrics
+        return subjects
+    
+    def get_control_subjects(self, session):
+        query = """MATCH (b:Biological_sample)
+    WHERE NOT (b)-[:HAS_DISEASE]-(:Disease)
+    RETURN b.subjectid as subjectId""" 
+        data = session.run(query).data()
+        subjects = [Subject(**record) for record in data]
+        for subject in subjects:
+            subject.phenotypes = get_phenotypes(self.session, subject.subjectId).phenotypes
+            subject.subjectMetrics = get_subject_metrics(self.session, subject.subjectId).subjectMetrics
         return subjects
 
 class ValidationDataFetcher:

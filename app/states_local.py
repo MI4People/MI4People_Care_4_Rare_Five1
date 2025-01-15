@@ -66,12 +66,17 @@ with driver.session(database=NEO4J_DB) as session:
     fetcher = DataFetcher(session)
     logger.info("Fetching data from Neo4j: Done")
 
-    logger.info("Fetching validation data from Neo4j: ...")
-    validationFetcher = ValidationDataFetcher(session)
-    logger.info("Fetching validation data from Neo4j: Done")
+    # logger.info("Fetching validation data from Neo4j: ...")
+    # validationFetcher = ValidationDataFetcher(session)
+    # logger.info("Fetching validation data from Neo4j: Done")
 
-# data = [vars(obj) for obj in fetcher.subjects]
-# df = pd.DataFrame(data)
+data_ill = [vars(obj) for obj in fetcher.ill_subjects]
+data_control = [vars(obj) for obj in fetcher.control_subject]
+
+df_ill = pd.DataFrame(data_ill)
+df_control = pd.DataFrame(data_control = [vars(obj) for obj in fetcher.control_subject]
+)
+
 # df_A = df[
 #     ["subjectId", "isSick", "icdFirstLetter", "subjectMetrics", "phenotypes"]
 # ]

@@ -34,7 +34,7 @@ from FeatureCloud.app.engine.app import AppState, app_state
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-config = read_config()
+config = read_config(local=False)
 
 OUTPUT_DIR = "/mnt/output"
 
