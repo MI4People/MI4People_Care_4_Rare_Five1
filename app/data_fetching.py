@@ -12,7 +12,15 @@ class Subject:
 
     def __repr__(self):
         return f"Subject(subjectId={self.subjectId}, disease={self.disease}, icd10={self.icd10})"
-    
+
+class ControlSubject:
+    def __init__(self, subjectId):
+        self.subjectId = subjectId
+        self.phenotypes = []
+
+    def __repr__(self):
+        return f"ControlSubject(subjectId={self.subjectId})"
+
 class ValidationSubject:
     def __init__(self, subjectId):
         self.subjectId = subjectId
@@ -127,7 +135,7 @@ class DataFetcher:
     WHERE NOT (b)-[:HAS_DISEASE]-(:Disease)
     RETURN b.subjectid as subjectId""" 
         data = session.run(query).data()
-        subjects = [Subject(**record) for record in data]
+        subjects = [ControlSubject(**record) for record in data]
         for subject in subjects:
             subject.phenotypes = get_phenotypes(self.session, subject.subjectId).phenotypes
             subject.subjectMetrics = get_subject_metrics(self.session, subject.subjectId).subjectMetrics

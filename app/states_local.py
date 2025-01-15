@@ -73,16 +73,26 @@ with driver.session(database=NEO4J_DB) as session:
 data_ill = [vars(obj) for obj in fetcher.ill_subjects]
 data_control = [vars(obj) for obj in fetcher.control_subject]
 
-df_ill = pd.DataFrame(data_ill)
-df_control = pd.DataFrame(data_control = [vars(obj) for obj in fetcher.control_subject]
-)
 
-# df_A = df[
-#     ["subjectId", "isSick", "icdFirstLetter", "subjectMetrics", "phenotypes"]
-# ]
-# df_B = df[
-#     ["subjectId", "isSick", "icdFirstLetter", "subjectMetrics", "phenotypes"]
-# ]
+df_ill = pd.DataFrame(data_ill)
+df_control = pd.DataFrame(data_control)
+
+# dataframe for case A, classifying if a subject is sick or not
+df_control['isSick'] = 0
+
+merged_data = pd.concat([df_ill, df_control], ignore_index=True)
+
+df_classify_ill = merged_data.drop(columns=['disease', 'isControl', 'icd10', 'hasIcd10', 'icdFirstLetter'])
+
+# dataframe for case B, classifying first letter of ICD10 code
+df_classify_icd10 = df_ill[df_ill['hasIcd10'] == True]
+
+
+# Print the merged dataframe to verify
+print(merged_data)
+
+# Split the data into a training set and a test set
+
 
 # testdata = [vars(obj) for obj in validationFetcher.subjects]
 # testdf = pd.DataFrame(testdata)
