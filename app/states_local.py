@@ -1,5 +1,6 @@
 from FeatureCloud.app.engine.app import AppState, app_state, Role
 import time
+from datetime import datetime
 import os
 import logging
 from data_fetching import DataFetcher, ValidationDataFetcher
@@ -37,7 +38,7 @@ logger = logging.getLogger(__name__)
 #TODO: Add flag in Dockerfile of config to build the image without the local config file and local flag
 config = read_config(local=True)
 
-OUTPUT_DIR = "/mnt/output"
+OUTPUT_DIR = "data/tests"
 
 
 # Get Neo4j credentials from config
@@ -78,48 +79,46 @@ df_ill = pd.DataFrame(data_ill)
 df_control = pd.DataFrame(data_control)
 
 # dataframe for case A, classifying if a subject is sick or not
-df_control['isSick'] = 0
+df_control['isSick'] = False
 
 merged_data = pd.concat([df_ill, df_control], ignore_index=True)
 
-df_classify_ill = merged_data.drop(columns=['disease', 'isControl', 'icd10', 'hasIcd10', 'icdFirstLetter'])
+df_classify_ill = merged_data.drop(columns=['disease', 'isControl', 'hasIcd10', 'icdFirstLetter'])
 
 # dataframe for case B, classifying first letter of ICD10 code
-df_classify_icd10 = df_ill[df_ill['hasIcd10'] == True]
+df_classify_icd10 = df_ill[df_ill['hasIcd10'] == True].drop(columns=['disease', 'isControl', 'isSick', 'hasIcd10'])
 
+classifiers_dict = {
+    "RandomForestClassifier": RandomForestClassifier(),
+    "GradientBoostingClassifier": GradientBoostingClassifier(),
+    "DecisionTreeClassifier": DecisionTreeClassifier(),
+    "KNeighborsClassifier": KNeighborsClassifier(),
+    "SVC": SVC(),
+    "LogisticRegression": LogisticRegression(),
+}
 
-# Print the merged dataframe to verify
-print(merged_data)
+now = datetime.now()
+
+timestamp = now.strftime("%Y_%m_%d_%H_%M_%S")
 
 # Split the data into a training set and a test set
+X_train, X_test = train_test_split(df_classify_ill, test_size=0.2, random_state=42)
 
+for classifier_name, classifier in classifiers_dict.items():
+    resultA = classificationA(X_train, X_test, classifier)
+    logger.info(f"Results Task A: {resultA}")
+    resultA.to_csv(
+        f"{OUTPUT_DIR}/results_task_A_{classifier_name}_{timestamp}.csv", index=False
+    )
 
-# testdata = [vars(obj) for obj in validationFetcher.subjects]
-# testdf = pd.DataFrame(testdata)
-# testdf_A = testdf[["subjectId", "phenotypes", "subjectMetrics"]]
-# testdf_B = testdf[["subjectId", "phenotypes", "subjectMetrics"]]
+#Split the data into a training set and a test set
+X_train, X_test = train_test_split(df_classify_icd10, test_size=0.2, random_state=42)
 
-# classifiers_dict = {
-#     "RandomForestClassifier": RandomForestClassifier(),
-#     "GradientBoostingClassifier": GradientBoostingClassifier(),
-#     "DecisionTreeClassifier": DecisionTreeClassifier(),
-#     "KNeighborsClassifier": KNeighborsClassifier(),
-#     "SVC": SVC(),
-#     "LogisticRegression": LogisticRegression(),
-# }
-
-# for classifier_name, classifier in classifiers_dict.items():
-#     resultA = classificationA(df, testdf, classifier)
-#     logger.info(f"Results Task A: {resultA}")
-#     resultA.to_csv(
-#         f"{OUTPUT_DIR}/results_task_A_{classifier_name}.csv", index=False
-#     )
-
-#     resultB = classificationB(df, testdf, classifier)
-#     logger.info(f"Results Task B: {resultB}")
-#     resultB.to_csv(
-#         f"{OUTPUT_DIR}/results_task_B_{classifier_name}.csv", index=False
-#     )
+# resultB = classificationB(X_train, X_test, classifier)
+# logger.info(f"Results Task B: {resultB}")
+# resultB.to_csv(
+#     f"{OUTPUT_DIR}/results_task_B_{classifier_name}_{timestamp}.csv", index=False
+# )
 
 # Close the driver connection
 driver.close()
