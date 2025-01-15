@@ -1,2 +1,17 @@
 careforrare/
 neo4j_eda/node_properties.csv
+
+
+data/
+test_results/
+care4rare_basic/
+app/test.ipynb
+
+config.yml
+config_local.yml
+data.csv
+test.json
+testing.ipynb
+testlogs.txt
+function_test.ipynb
+.env
