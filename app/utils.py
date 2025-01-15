@@ -8,7 +8,12 @@ logger = logging.getLogger(__name__)
 INPUT_DIR = '/mnt/input'
 OUTPUT_DIR = '/mnt/output'
 
-def read_config(file_path=f"{INPUT_DIR}/config.yml"):
+def read_config(local=False):
+    if local:
+        file_path = "config_local.yml"
+    else:
+        file_path = f"{INPUT_DIR}/config.yml"
+        
     try:
         with open(file_path, "r") as config_file:
             config = yaml.safe_load(config_file)
