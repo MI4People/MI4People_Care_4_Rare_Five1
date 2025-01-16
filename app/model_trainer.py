@@ -64,14 +64,14 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
     # Expand the subjectMetrics dictionaries into separate columns
     expanded_df = df_test["subjectMetrics"].apply(pd.Series)
     # Join the expanded DataFrame with the original DataFrame
-    df_test = pd.concat([df_test.drop(["subjectMetrics", "isSick"], axis=1), expanded_df], axis=1)
-    y_pred = clf.predict(df_test.drop(columns=["subjectId", "icd10"]))
+    merged_df = pd.concat([df_test.drop(["subjectMetrics", "isSick"], axis=1), expanded_df], axis=1)
+    y_pred = clf.predict(merged_df.drop(columns=["subjectId", "icd10"]))
 
     # Print a classification report
     # logger.info(f"Results Task A {classification_report(y_test, y_pred)}")
 
     # Create a DataFrame with subjectId and y_pred
-    results_df = pd.DataFrame({"subjectId": df_test["subjectId"], "icd10": df_test["icd10"], "ill": y_pred})
+    results_df = pd.DataFrame({"subjectId": df_test["subjectId"], "icd10": df_test["icd10"], "target_pred": y_pred, "target_true": df_test["isSick"]})
 
     return results_df
 

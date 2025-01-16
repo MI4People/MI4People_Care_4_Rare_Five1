@@ -111,6 +111,12 @@ for classifier_name, classifier in classifiers_dict.items():
         f"{OUTPUT_DIR}/results_task_A_{classifier_name}_{timestamp}.csv", index=False
     )
 
+
+
+
+
+
+
 #Split the data into a training set and a test set
 X_train, X_test = train_test_split(df_classify_icd10, test_size=0.2, random_state=42)
 
