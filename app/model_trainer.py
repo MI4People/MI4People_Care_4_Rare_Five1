@@ -49,7 +49,7 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
     # Convert boolean to int
     df["isSick"] = df["isSick"].astype(int)
 
-    # Split the data into a training set and a test set
+    # Split the data into a observable variables and target variables
     X_train, y_train = df.drop(["isSick"], axis=1), df["isSick"]
 
     # Train a Random Forest classifier

@@ -38,7 +38,7 @@ class Phenotypes:
         return f"Phenotypes(subjectId={self.subjectId}, phenotypes={self.phenotypes})"
     
 def get_phenotypes(session, subjectId):
-    query = """MATCH (a:Biological_sample {subjectid:\"""" + subjectId + """\"})-[:HAS_PHENOTYPE]->(p:Phenotype) 
+    query = f"""MATCH (a:Biological_sample {{subjectid: {subjectId}}})-[:HAS_PHENOTYPE]->(p:Phenotype) 
                 RETURN a.subjectid as subjectId, collect(p.id) as phenotypes"""
     data = session.run(query).data()
     if len(data) == 0:
@@ -54,40 +54,39 @@ class SubjectMetrics:
         return f"SubjectMetrics(subjectId={self.subjectId}, numProteins={self.numProteins}, avgProteinScore={self.avgProteinScore}, minProteinScore={self.minProteinScore}, maxProteinScore={self.maxProteinScore}, sumProteinScore={self.sumProteinScore}, numGenes={self.numGenes}, avgGeneScore={self.avgGeneScore}, minGeneScore={self.minGeneScore}, maxGeneScore={self.maxGeneScore}, sumGeneScore={self.sumGeneScore}, numPhenotypes={self.numPhenotypes})"
     
 def get_subject_metrics(session, subjectId):
-    query = """MATCH (bs:Biological_sample {subjectid:\"""" + subjectId + """\"})
-    OPTIONAL MATCH (bs {subjectid:\"""" + subjectId + """\"})-[r_protein:HAS_PROTEIN]->()
-    OPTIONAL MATCH (bs {subjectid:\"""" + subjectId + """\"})-[r_damage:HAS_DAMAGE]->()
-    OPTIONAL MATCH (bs {subjectid:\"""" + subjectId + """\"})-[r_phenotype:HAS_PHENOTYPE]->()
-    WITH bs,
-        // Aggregations for Proteins
-        COUNT(DISTINCT CASE WHEN r_protein IS NOT NULL THEN r_protein END) AS numProteins,
-        AVG(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS avgProteinScore,
-        MIN(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS minProteinScore,
-        MAX(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS maxProteinScore,
-        SUM(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS sumProteinScore,
+    query = f"""MATCH (bs:Biological_sample {{subjectid: {subjectId}}}) OPTIONAL MATCH (bs {{subjectid: {subjectId}}})-[r_protein:HAS_PROTEIN]->() 
+                OPTIONAL MATCH (bs {{subjectid: {subjectId}}})-[r_damage:HAS_DAMAGE]->()
+                OPTIONAL MATCH (bs {{subjectid: {subjectId}}})-[r_phenotype:HAS_PHENOTYPE]->()
+                WITH bs,
+                    // Aggregations for Proteins
+                    COUNT(DISTINCT CASE WHEN r_protein IS NOT NULL THEN r_protein END) AS numProteins,
+                    AVG(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS avgProteinScore,
+                    MIN(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS minProteinScore,
+                    MAX(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS maxProteinScore,
+                    SUM(CASE WHEN r_protein IS NOT NULL THEN toFloat(r_protein.score) END) AS sumProteinScore,
 
-        // Aggregations for Genes
-        COUNT(DISTINCT CASE WHEN r_damage IS NOT NULL THEN r_damage END) AS numGenes,
-        AVG(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS avgGeneScore,
-        MIN(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS minGeneScore,
-        MAX(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS maxGeneScore,
-        SUM(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS sumGeneScore,
+                    // Aggregations for Genes
+                    COUNT(DISTINCT CASE WHEN r_damage IS NOT NULL THEN r_damage END) AS numGenes,
+                    AVG(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS avgGeneScore,
+                    MIN(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS minGeneScore,
+                    MAX(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS maxGeneScore,
+                    SUM(CASE WHEN r_damage IS NOT NULL THEN toFloat(r_damage.score) END) AS sumGeneScore,
 
-        // Count of Phenotypes
-        COUNT(DISTINCT r_phenotype) AS numPhenotypes
+                    // Count of Phenotypes
+                    COUNT(DISTINCT r_phenotype) AS numPhenotypes
 
-    RETURN bs.subjectid AS subjectId,
-       {numProteins: numProteins,
-        avgProteinScore: avgProteinScore,
-        minProteinScore: minProteinScore,
-        maxProteinScore: maxProteinScore,
-        sumProteinScore: sumProteinScore,
-        numGenes: numGenes,
-        avgGeneScore: avgGeneScore,
-        minGeneScore: minGeneScore,
-        maxGeneScore: maxGeneScore,
-        sumGeneScore: sumGeneScore,
-        numPhenotypes: numPhenotypes} as subjectMetrics"""
+                RETURN bs.subjectid AS subjectId,
+                {{numProteins: numProteins,
+                    avgProteinScore: avgProteinScore,
+                    minProteinScore: minProteinScore,
+                    maxProteinScore: maxProteinScore,
+                    sumProteinScore: sumProteinScore,
+                    numGenes: numGenes,
+                    avgGeneScore: avgGeneScore,
+                    minGeneScore: minGeneScore,
+                    maxGeneScore: maxGeneScore,
+                    sumGeneScore: sumGeneScore,
+                    numPhenotypes: numPhenotypes}} as subjectMetrics"""
     
     data = session.run(query).data()
     if len(data) == 0:
