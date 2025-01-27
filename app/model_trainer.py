@@ -39,7 +39,7 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
     mlb = MultiLabelBinarizer()
     encoded_phenotypes = pd.DataFrame(
         mlb.fit_transform(df["phenotypes"]), columns=mlb.classes_, index=df.index
-    )
+    ).fillna(0)
     df = df.drop("phenotypes", axis=1).join(encoded_phenotypes)
     # Expand the dictionaries into separate columns
     expanded_df = df["subjectMetrics"].apply(pd.Series)
@@ -52,9 +52,12 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
     # Split the data into a observable variables and target variables
     X_train, y_train = df.drop(["isSick"], axis=1), df["isSick"]
 
+    # Store the feature names during the fit stage
+    feature_names = X_train.drop(columns=["subjectId", "icd10", "disease", "hasIcd10", "isControl", "icdFirstLetter"]).columns.tolist()
+
     # Train a Random Forest classifier
     clf = classifier
-    clf.fit(X_train.drop(columns=["subjectId","icd10"]), y_train)
+    clf.fit(X_train[feature_names], y_train)
 
     # Make predictions on the test set
     encoded_test_data = pd.DataFrame(
@@ -64,14 +67,24 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
     # Expand the subjectMetrics dictionaries into separate columns
     expanded_df = df_test["subjectMetrics"].apply(pd.Series)
     # Join the expanded DataFrame with the original DataFrame
-    merged_df = pd.concat([df_test.drop(["subjectMetrics", "isSick"], axis=1), expanded_df], axis=1)
-    y_pred = clf.predict(merged_df.drop(columns=["subjectId", "icd10"]))
+    merged_df = pd.concat(
+        [df_test.drop(["subjectMetrics", "isSick"], axis=1), expanded_df], axis=1
+    )
+
+    y_pred = clf.predict(merged_df[feature_names])
 
     # Print a classification report
     # logger.info(f"Results Task A {classification_report(y_test, y_pred)}")
 
     # Create a DataFrame with subjectId and y_pred
-    results_df = pd.DataFrame({"subjectId": df_test["subjectId"], "icd10": df_test["icd10"], "target_pred": y_pred, "target_true": df_test["isSick"]})
+    results_df = pd.DataFrame(
+        {
+            "subjectId": df_test["subjectId"],
+            "icd10": df_test["icd10"],
+            "target_true": df_test["isSick"].astype(int),
+            "target_pred": y_pred,
+        }
+    )
 
     return results_df
 
@@ -98,7 +111,7 @@ def classificationB(df, df_test, classifier, param_grid={}):
 
     # Train a Random Forest classifier
     clf = classifier
-    clf.fit(X_train.drop(columns=["subjectId","icd10"]), y_train)
+    clf.fit(X_train.drop(columns=["subjectId", "icd10"]), y_train)
 
     # Make predictions on the test set
     encoded_test_data = pd.DataFrame(
@@ -115,6 +128,12 @@ def classificationB(df, df_test, classifier, param_grid={}):
     # logger.info(f"Results Task A {classification_report(y_test, y_pred)}")
 
     # Create a DataFrame with subjectId and y_pred
-    results_df = pd.DataFrame({"subjectId": df_test["subjectId"], "icd10": df_test["icd10"], "pred_icdFirstLetter": y_pred})
+    results_df = pd.DataFrame(
+        {
+            "subjectId": df_test["subjectId"],
+            "icd10": df_test["icd10"],
+            "pred_icdFirstLetter": y_pred,
+        }
+    )
 
     return results_df

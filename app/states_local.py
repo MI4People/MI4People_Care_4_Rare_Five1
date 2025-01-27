@@ -1,36 +1,33 @@
-from FeatureCloud.app.engine.app import AppState, app_state, Role
-import time
-from datetime import datetime
-import os
 import logging
-from data_fetching import DataFetcher, ValidationDataFetcher
-from model_trainer import classificationA, classificationB
+import os
+import time
+from datetime import datetime, timedelta
 
+import pandas as pd
 from neo4j import GraphDatabase, Query, Record
 from neo4j.exceptions import ServiceUnavailable
 from pandas import DataFrame
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.svm import SVC
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.pipeline import Pipeline
 from sklearn.metrics import (
     confusion_matrix,
+    f1_score,
     precision_score,
     recall_score,
-    f1_score,
     roc_auc_score,
 )
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 
+from data_fetching import DataFetcher
+from model_trainer import classificationA, classificationB
+from model_performance import evaluate_and_save_metrics
 from utils import read_config, write_output
-
-# ,CSVResultsBuilder,ResultRow
-from FeatureCloud.app.engine.app import AppState, app_state
+from FeatureCloud.app.engine.app import AppState, app_state, Role
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -38,7 +35,7 @@ logger = logging.getLogger(__name__)
 #TODO: Add flag in Dockerfile of config to build the image without the local config file and local flag
 config = read_config(local=True)
 
-OUTPUT_DIR = "data/tests"
+OUTPUT_DIR = "data"
 
 
 # Get Neo4j credentials from config
@@ -58,35 +55,49 @@ except ServiceUnavailable as e:
     logger.error(f"Connection failed: {e}")
     raise
 
-# # Result
-# # result = CSVResultsBuilder()
+file_path = f"{OUTPUT_DIR}/raw_data/clinical_synth_data.csv"
 
-# # Create a driver session with defined DB
-with driver.session(database=NEO4J_DB) as session:
-    logger.info("Fetching data from Neo4j: ...")
-    fetcher = DataFetcher(session)
-    logger.info("Fetching data from Neo4j: Done")
+# Überprüfen, ob die Datei vorhanden ist, und ob sie jünger als 24 Stunden ist
+# Wenn ja, die Datei lesen, ansonsten die Daten aus Neo4j abrufen
+# Ausnahme für ältere Dateien in diesem Fall aus Entwicklungsgründen
+if os.path.exists(file_path):
+    # Zeitstempel der Datei abrufen
+    file_creation_time = datetime.fromtimestamp(os.path.getctime(file_path))
+    
+    # Aktuelle Zeit abrufen
+    current_time = datetime.now()
+    
+    # Überprüfen, ob die Datei weniger als einen Tag alt ist
+    if current_time - file_creation_time < timedelta(days=1):
+        logger.info("File exists and is less than 24 hours old.")
+        logger.info("Reading the file.")
+        df = pd.read_csv(file_path)
+    else:
+        logger.info("File exists but is older than 24 hours.")
+        logger.info("Reading the file.")
+        df = pd.read_csv(file_path)
+else:
+    logger.info("File does not exist.")
+    logger.info("Creating the file.")
+    # # Create a driver session with defined DB
+    with driver.session(database=NEO4J_DB) as session:
+        logger.info("Fetching data from Neo4j: ...")
+        fetcher = DataFetcher(session)
+        logger.info("Fetching data from Neo4j: Done")
 
     # logger.info("Fetching validation data from Neo4j: ...")
     # validationFetcher = ValidationDataFetcher(session)
     # logger.info("Fetching validation data from Neo4j: Done")
 
-data_ill = [vars(obj) for obj in fetcher.ill_subjects]
-data_control = [vars(obj) for obj in fetcher.control_subject]
+    data = [vars(obj) for obj in fetcher.subjects]
+
+    df = pd.DataFrame(data)
+    df.to_csv(file_path, index=False)
 
 
-df_ill = pd.DataFrame(data_ill)
-df_control = pd.DataFrame(data_control)
-
-# dataframe for case A, classifying if a subject is sick or not
-df_control['isSick'] = False
-
-merged_data = pd.concat([df_ill, df_control], ignore_index=True)
-
-df_classify_ill = merged_data.drop(columns=['disease', 'isControl', 'hasIcd10', 'icdFirstLetter'])
 
 # dataframe for case B, classifying first letter of ICD10 code
-df_classify_icd10 = df_ill[df_ill['hasIcd10'] == True].drop(columns=['disease', 'isControl', 'isSick', 'hasIcd10'])
+df_classify_icd10 = df[df['hasIcd10'] == True].drop(columns=['disease', 'isControl', 'isSick', 'hasIcd10'])
 
 classifiers_dict = {
     "RandomForestClassifier": RandomForestClassifier(),
@@ -102,14 +113,15 @@ now = datetime.now()
 timestamp = now.strftime("%Y_%m_%d_%H_%M_%S")
 
 # Split the data into a training set and a test set
-X_train, X_test = train_test_split(df_classify_ill, test_size=0.2, random_state=42)
+X_train, X_test = train_test_split(df, test_size=0.2, random_state=42)
 
 for classifier_name, classifier in classifiers_dict.items():
     resultA = classificationA(X_train, X_test, classifier)
     logger.info(f"Results Task A: {resultA}")
     resultA.to_csv(
-        f"{OUTPUT_DIR}/results_task_A_{classifier_name}_{timestamp}.csv", index=False
+        f"{OUTPUT_DIR}/tests/results_task_A_{classifier_name}_{timestamp}.csv", index=False
     )
+    evaluate_and_save_metrics(base_path=f"{OUTPUT_DIR}/metrics",resultA, 'A', classifier_name, timestamp)
 
 
 
@@ -123,7 +135,7 @@ X_train, X_test = train_test_split(df_classify_icd10, test_size=0.2, random_stat
 # resultB = classificationB(X_train, X_test, classifier)
 # logger.info(f"Results Task B: {resultB}")
 # resultB.to_csv(
-#     f"{OUTPUT_DIR}/results_task_B_{classifier_name}_{timestamp}.csv", index=False
+#     f"{OUTPUT_DIR}/tests/results_task_B_{classifier_name}_{timestamp}.csv", index=False
 # )
 
 # Close the driver connection

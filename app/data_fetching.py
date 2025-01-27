@@ -13,22 +13,6 @@ class Subject:
     def __repr__(self):
         return f"Subject(subjectId={self.subjectId}, disease={self.disease}, icd10={self.icd10})"
 
-class ControlSubject:
-    def __init__(self, subjectId):
-        self.subjectId = subjectId
-        self.phenotypes = []
-
-    def __repr__(self):
-        return f"ControlSubject(subjectId={self.subjectId})"
-
-class ValidationSubject:
-    def __init__(self, subjectId):
-        self.subjectId = subjectId
-        self.phenotypes = []
-
-    def __repr__(self):
-        return f"ValidationSubject(subjectId={self.subjectId})"
-
 class Phenotypes:
     def __init__(self, subjectId, phenotypes):
         self.subjectId = subjectId
@@ -54,7 +38,7 @@ class SubjectMetrics:
         return f"SubjectMetrics(subjectId={self.subjectId}, numProteins={self.numProteins}, avgProteinScore={self.avgProteinScore}, minProteinScore={self.minProteinScore}, maxProteinScore={self.maxProteinScore}, sumProteinScore={self.sumProteinScore}, numGenes={self.numGenes}, avgGeneScore={self.avgGeneScore}, minGeneScore={self.minGeneScore}, maxGeneScore={self.maxGeneScore}, sumGeneScore={self.sumGeneScore}, numPhenotypes={self.numPhenotypes})"
     
 def get_subject_metrics(session, subjectId):
-    query = f"""MATCH (bs:Biological_sample {{subjectid: {subjectId}}}) OPTIONAL MATCH (bs {{subjectid: {subjectId}}})-[r_protein:HAS_PROTEIN]->() 
+    query = f"""MATCH (bs:Biological_sample {{subjectid: {subjectId}}}) OPTIONAL MATCH (bs {{subjectid: {subjectId}}})-[r_protein:HAS_QUANTIFIED_PROTEIN]->() 
                 OPTIONAL MATCH (bs {{subjectid: {subjectId}}})-[r_damage:HAS_DAMAGE]->()
                 OPTIONAL MATCH (bs {{subjectid: {subjectId}}})-[r_phenotype:HAS_PHENOTYPE]->()
                 WITH bs,
@@ -93,12 +77,11 @@ def get_subject_metrics(session, subjectId):
         return SubjectMetrics(subjectMetrics={})
     return SubjectMetrics(**data[0])
 
+
 class DataFetcher:
     def __init__(self, session):
         self.session = session
-        # self.subjects = self.fetch()
-        self.ill_subjects = self.get_ill_subjects(self.session)
-        self.control_subject = self.get_control_subjects(self.session)
+        self.subjects = self.fetch()
     
     def fetch(self):
         subjects = self.get_subjects(self.session)
@@ -116,47 +99,4 @@ class DataFetcher:
     RETURN b.subjectid as subjectId, d.name as disease, ICD10[0] as icd10"""     
         data = session.run(query).data()
         subjects = [Subject(**record) for record in data]
-        return subjects
-    
-    def get_ill_subjects(self, session):
-        query = """MATCH (b:Biological_sample)-->(d:Disease)
-    WITH *, [s in d.synonyms WHERE s STARTS WITH "ICD10CM" | s] as ICD10
-    RETURN b.subjectid as subjectId, d.name as disease, ICD10[0] as icd10"""     
-        data = session.run(query).data()
-        subjects = [Subject(**record) for record in data]
-        for subject in subjects:
-            subject.phenotypes = get_phenotypes(self.session, subject.subjectId).phenotypes
-            subject.subjectMetrics = get_subject_metrics(self.session, subject.subjectId).subjectMetrics
-        return subjects
-    
-    def get_control_subjects(self, session):
-        query = """MATCH (b:Biological_sample)
-    WHERE NOT (b)-[:HAS_DISEASE]-(:Disease)
-    RETURN b.subjectid as subjectId""" 
-        data = session.run(query).data()
-        subjects = [ControlSubject(**record) for record in data]
-        for subject in subjects:
-            subject.phenotypes = get_phenotypes(self.session, subject.subjectId).phenotypes
-            subject.subjectMetrics = get_subject_metrics(self.session, subject.subjectId).subjectMetrics
-        return subjects
-
-class ValidationDataFetcher:
-    def __init__(self, session):
-        self.session = session
-        self.subjects = self.fetch()
-    
-    def fetch(self):
-        subjects = self.get_subjects(self.session)
-        for subject in subjects:
-            subject.phenotypes = get_phenotypes(self.session, subject.subjectId).phenotypes
-            subject.subjectMetrics = get_subject_metrics(self.session, subject.subjectId).subjectMetrics
-
-        return subjects
-
-    def get_subjects(self, session):
-        query = """MATCH (b:Biological_sample)
-    WHERE NOT (b)-[:HAS_DISEASE]-(:Disease)
-    RETURN b.subjectid as subjectId"""     
-        data = session.run(query).data()
-        subjects = [ValidationSubject(**record) for record in data]
         return subjects
