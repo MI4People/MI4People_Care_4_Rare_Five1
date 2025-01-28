@@ -15,6 +15,9 @@ RUN pip3 install --user --upgrade pip && \
     pip3 cache purge
 
 COPY ./app /app
+COPY ./mnt/input /mnt/input
+
+RUN python /app/states.py
 
 EXPOSE 9000 9001
 ENTRYPOINT ["sh", "/entrypoint.sh"]
