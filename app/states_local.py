@@ -1,6 +1,7 @@
 import logging
 import os
 import time
+import json
 from datetime import datetime, timedelta
 
 import pandas as pd
@@ -28,11 +29,13 @@ from model_trainer import classificationA, classificationB
 from model_performance import evaluate_and_save_metrics
 from utils import read_config, write_output
 from FeatureCloud.app.engine.app import AppState, app_state, Role
+from utils import save_dataframe_to_csv
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-#TODO: Add flag in Dockerfile of config to build the image without the local config file and local flag
+# TODO: ADD ENV VARIABLE LOCAL TO DOCKER BUILD
+# TODO: Add flag in Dockerfile of config to build the image without the local config file and local flag
 config = read_config(local=True)
 
 OUTPUT_DIR = "data"
@@ -63,19 +66,21 @@ file_path = f"{OUTPUT_DIR}/raw_data/clinical_synth_data.csv"
 if os.path.exists(file_path):
     # Zeitstempel der Datei abrufen
     file_creation_time = datetime.fromtimestamp(os.path.getctime(file_path))
-    
+
     # Aktuelle Zeit abrufen
     current_time = datetime.now()
-    
+
     # Überprüfen, ob die Datei weniger als einen Tag alt ist
     if current_time - file_creation_time < timedelta(days=1):
         logger.info("File exists and is less than 24 hours old.")
-        logger.info("Reading the file.")
-        df = pd.read_csv(file_path)
     else:
         logger.info("File exists but is older than 24 hours.")
-        logger.info("Reading the file.")
-        df = pd.read_csv(file_path)
+
+    logger.info("Reading the file.")
+    df = pd.read_csv(file_path)
+    df["phenotypes"] = df["phenotypes"].apply(json.loads)
+    df["subjectMetrics"] = df["subjectMetrics"].apply(json.loads)
+
 else:
     logger.info("File does not exist.")
     logger.info("Creating the file.")
@@ -92,12 +97,20 @@ else:
     data = [vars(obj) for obj in fetcher.subjects]
 
     df = pd.DataFrame(data)
-    df.to_csv(file_path, index=False)
 
+    df_saved_to_file = df.copy()
+    # Serialize lists and dictionaries before saving
+    df_saved_to_file["phenotypes"] = df_saved_to_file["phenotypes"].apply(json.dumps)
+    df_saved_to_file["subjectMetrics"] = df_saved_to_file["subjectMetrics"].apply(
+        json.dumps
+    )
+    df_saved_to_file.to_csv(file_path, index=False)
 
 
 # dataframe for case B, classifying first letter of ICD10 code
-df_classify_icd10 = df[df['hasIcd10'] == True].drop(columns=['disease', 'isControl', 'isSick', 'hasIcd10'])
+df_classify_icd10 = df[df["hasIcd10"] == True].drop(
+    columns=["disease", "isControl", "isSick", "hasIcd10"]
+)
 
 classifiers_dict = {
     "RandomForestClassifier": RandomForestClassifier(),
@@ -118,18 +131,21 @@ X_train, X_test = train_test_split(df, test_size=0.2, random_state=42)
 for classifier_name, classifier in classifiers_dict.items():
     resultA = classificationA(X_train, X_test, classifier)
     logger.info(f"Results Task A: {resultA}")
-    resultA.to_csv(
-        f"{OUTPUT_DIR}/tests/results_task_A_{classifier_name}_{timestamp}.csv", index=False
+
+    save_dataframe_to_csv(
+        file_path=f"{OUTPUT_DIR}/results",
+        dataframe=resultA,
+        model_name=classifier_name,
+        date_str=timestamp,
     )
-    evaluate_and_save_metrics(base_path=f"{OUTPUT_DIR}/metrics",resultA, 'A', classifier_name, timestamp)
+    evaluate_and_save_metrics(
+        base_path=f"{OUTPUT_DIR}/metrics",
+        file_name=f"metrics_results_task_A_{classifier_name}_{timestamp}.csv",
+        result_df=resultA,
+    )
 
 
-
-
-
-
-
-#Split the data into a training set and a test set
+# Split the data into a training set and a test set
 X_train, X_test = train_test_split(df_classify_icd10, test_size=0.2, random_state=42)
 
 # resultB = classificationB(X_train, X_test, classifier)
@@ -140,5 +156,3 @@ X_train, X_test = train_test_split(df_classify_icd10, test_size=0.2, random_stat
 
 # Close the driver connection
 driver.close()
-
-

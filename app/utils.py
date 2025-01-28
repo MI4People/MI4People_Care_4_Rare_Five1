@@ -5,26 +5,27 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-INPUT_DIR = '/mnt/input'
-OUTPUT_DIR = '/mnt/output'
+INPUT_DIR = "/mnt/input"
+OUTPUT_DIR = "/mnt/output"
+
 
 def read_config(local=False):
     if local:
         file_path = "config_local.yml"
     else:
         file_path = f"{INPUT_DIR}/config.yml"
-        
+
     try:
         with open(file_path, "r") as config_file:
             config = yaml.safe_load(config_file)
         return config
-                
+
     except FileNotFoundError:
         logger.info(f"Config file '{file_path}' not found.")
 
 
 def write_output(content, file_path=f"{OUTPUT_DIR}/results.txt"):
-    
+
     with open(file_path, "w") as text_file:
         text_file.write(content)
 
@@ -34,6 +35,12 @@ def convert_to_np(data):
         return data.to_numpy()
     else:
         raise ValueError("Input data is not a Pandas Series or DataFrame.")
+
+
+def save_dataframe_to_csv(file_path, dataframe, model_name, date_str):
+    complete_file_path = f"{file_path}_{model_name}_{date_str}.csv"
+    dataframe.to_csv(complete_file_path, index=False)
+    logger.info(f"DataFrame saved to {complete_file_path}")
 
 
 ## Example Function how to read input files

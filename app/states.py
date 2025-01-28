@@ -1,35 +1,22 @@
-from FeatureCloud.app.engine.app import AppState, app_state, Role
-import time
-import os
 import logging
-from data_fetching import DataFetcher, ValidationDataFetcher
-from model_trainer import classificationA, classificationB
+import os
+from datetime import datetime
 
-from neo4j import GraphDatabase, Query, Record
-from neo4j.exceptions import ServiceUnavailable
-from pandas import DataFrame
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.svm import SVC
+from neo4j import GraphDatabase
+from neo4j.exceptions import ServiceUnavailable
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import (
-    confusion_matrix,
-    precision_score,
-    recall_score,
-    f1_score,
-    roc_auc_score,
-)
-from sklearn.model_selection import GridSearchCV
-from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 
-from utils import read_config, write_output
-
-# ,CSVResultsBuilder,ResultRow
-from FeatureCloud.app.engine.app import AppState, app_state
+from FeatureCloud.app.engine.app import AppState, app_state, Role
+from data_fetching import DataFetcher
+from model_performance import evaluate_and_save_metrics
+from model_trainer import classificationA
+from utils import read_config, save_dataframe_to_csv
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -56,9 +43,12 @@ class ExecuteState(AppState):
 
         # Driver instantiation
         driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
-
-        # Result
-        # result = CSVResultsBuilder()
+        try:
+            driver.verify_connectivity()
+            logger.info("Connection established.")
+        except ServiceUnavailable as e:
+            logger.error(f"Connection failed: {e}")
+            raise
 
         # Create a driver session with defined DB
         with driver.session(database=NEO4J_DB) as session:
@@ -67,23 +57,12 @@ class ExecuteState(AppState):
             fetcher = DataFetcher(session)
             logger.info("Fetching data from Neo4j: Done")
 
-            logger.info("Fetching validation data from Neo4j: ...")
-            validationFetcher = ValidationDataFetcher(session)
-            logger.info("Fetching validation data from Neo4j: Done")
-
         data = [vars(obj) for obj in fetcher.subjects]
         df = pd.DataFrame(data)
-        df_A = df[
-            ["subjectId", "isSick", "icdFirstLetter", "subjectMetrics", "phenotypes"]
-        ]
-        df_B = df[
-            ["subjectId", "isSick", "icdFirstLetter", "subjectMetrics", "phenotypes"]
-        ]
 
-        testdata = [vars(obj) for obj in validationFetcher.subjects]
-        testdf = pd.DataFrame(testdata)
-        testdf_A = testdf[["subjectId", "phenotypes", "subjectMetrics"]]
-        testdf_B = testdf[["subjectId", "phenotypes", "subjectMetrics"]]
+        # df_classify_icd10 = df[df["hasIcd10"] == True].drop(
+        #     columns=["disease", "isControl", "isSick", "hasIcd10"]
+        # )
 
         classifiers_dict = {
             "RandomForestClassifier": RandomForestClassifier(),
@@ -94,17 +73,27 @@ class ExecuteState(AppState):
             "LogisticRegression": LogisticRegression(),
         }
 
-        for classifier_name, classifier in classifiers_dict.items():
-            resultA = classificationA(df, testdf, classifier)
-            logger.info(f"Results Task A: {resultA}")
-            resultA.to_csv(
-                f"{OUTPUT_DIR}/results_task_A_{classifier_name}.csv", index=False
-            )
+        now = datetime.now()
 
-            resultB = classificationB(df, testdf, classifier)
-            logger.info(f"Results Task B: {resultB}")
-            resultB.to_csv(
-                f"{OUTPUT_DIR}/results_task_B_{classifier_name}.csv", index=False
+        timestamp = now.strftime("%Y_%m_%d_%H_%M_%S")
+
+        # Split the data into a training set and a test set
+        X_train, X_test = train_test_split(df, test_size=0.2, random_state=42)
+
+        for classifier_name, classifier in classifiers_dict.items():
+            resultA = classificationA(X_train, X_test, classifier)
+            logger.info(f"Results Task A: {resultA}")
+
+            save_dataframe_to_csv(
+                file_path=f"{OUTPUT_DIR}/results",
+                dataframe=resultA,
+                model_name=classifier_name,
+                date_str=timestamp,
+            )
+            evaluate_and_save_metrics(
+                base_path=f"{OUTPUT_DIR}/metrics",
+                file_name=f"metrics_results_task_A_{classifier_name}_{timestamp}.csv",
+                result_df=resultA,
             )
 
         # Close the driver connection

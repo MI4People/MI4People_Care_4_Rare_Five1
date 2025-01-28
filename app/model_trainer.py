@@ -53,7 +53,16 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
     X_train, y_train = df.drop(["isSick"], axis=1), df["isSick"]
 
     # Store the feature names during the fit stage
-    feature_names = X_train.drop(columns=["subjectId", "icd10", "disease", "hasIcd10", "isControl", "icdFirstLetter"]).columns.tolist()
+    feature_names = X_train.drop(
+        columns=[
+            "subjectId",
+            "icd10",
+            "disease",
+            "hasIcd10",
+            "isControl",
+            "icdFirstLetter",
+        ]
+    ).columns.tolist()
 
     # Train a Random Forest classifier
     clf = classifier
