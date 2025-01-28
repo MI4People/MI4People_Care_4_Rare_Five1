@@ -3,6 +3,7 @@ neo4j_eda/node_properties.csv
 
 
 data/
+mnt/
 test_results/
 care4rare_basic/
 app/test.ipynb

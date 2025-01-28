@@ -27,9 +27,8 @@ from sklearn.tree import DecisionTreeClassifier
 from data_fetching import DataFetcher
 from model_trainer import classificationA, classificationB
 from model_performance import evaluate_and_save_metrics
-from utils import read_config, write_output
 from FeatureCloud.app.engine.app import AppState, app_state, Role
-from utils import save_dataframe_to_csv
+from utils import read_config, save_dataframe_to_csv, get_classifier_experiment_folder
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -38,8 +37,11 @@ logger = logging.getLogger(__name__)
 # TODO: Add flag in Dockerfile of config to build the image without the local config file and local flag
 config = read_config(local=True)
 
-OUTPUT_DIR = "data"
+OUTPUT_DIR = "mnt/output"
 
+# Überprüfen, ob der OUTPUT_DIR existiert
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Get Neo4j credentials from config
 neo4j_credentials = config.get("neo4j_credentials", {})
@@ -58,7 +60,8 @@ except ServiceUnavailable as e:
     logger.error(f"Connection failed: {e}")
     raise
 
-file_path = f"{OUTPUT_DIR}/raw_data/clinical_synth_data.csv"
+# only LOCAL
+file_path = "data/raw_data/clinical_synth_data.csv"
 
 # Überprüfen, ob die Datei vorhanden ist, und ob sie jünger als 24 Stunden ist
 # Wenn ja, die Datei lesen, ansonsten die Daten aus Neo4j abrufen
@@ -128,20 +131,22 @@ timestamp = now.strftime("%Y_%m_%d_%H_%M_%S")
 # Split the data into a training set and a test set
 X_train, X_test = train_test_split(df, test_size=0.2, random_state=42)
 
+
 for classifier_name, classifier in classifiers_dict.items():
     resultA = classificationA(X_train, X_test, classifier)
     logger.info(f"Results Task A: {resultA}")
 
+    experiment_folder = get_classifier_experiment_folder(OUTPUT_DIR, classifier_name)
+
     save_dataframe_to_csv(
-        file_path=f"{OUTPUT_DIR}/results",
+        file_name=f"results_task_A_{classifier_name}_{timestamp}.csv",
+        folder=experiment_folder,
         dataframe=resultA,
-        model_name=classifier_name,
-        date_str=timestamp,
     )
     evaluate_and_save_metrics(
-        base_path=f"{OUTPUT_DIR}/metrics",
-        file_name=f"metrics_results_task_A_{classifier_name}_{timestamp}.csv",
-        result_df=resultA,
+        file_name=f"metrics_task_A_{classifier_name}_{timestamp}.csv",
+        folder=experiment_folder,
+        dataframe=resultA,
     )
 
 

@@ -16,7 +16,7 @@ from FeatureCloud.app.engine.app import AppState, app_state, Role
 from data_fetching import DataFetcher
 from model_performance import evaluate_and_save_metrics
 from model_trainer import classificationA
-from utils import read_config, save_dataframe_to_csv
+from utils import read_config, save_dataframe_to_csv, get_classifier_experiment_folder
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -25,6 +25,9 @@ config = read_config(local=False)
 
 OUTPUT_DIR = "/mnt/output"
 
+# Überprüfen, ob der OUTPUT_DIR existiert
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 @app_state("initial")
 class ExecuteState(AppState):
@@ -84,17 +87,32 @@ class ExecuteState(AppState):
             resultA = classificationA(X_train, X_test, classifier)
             logger.info(f"Results Task A: {resultA}")
 
+            experiment_folder = get_classifier_experiment_folder(OUTPUT_DIR, classifier_name)
+
             save_dataframe_to_csv(
-                file_path=f"{OUTPUT_DIR}/results",
+                file_name=f"results_task_A_{classifier_name}_{timestamp}.csv",
+                folder=experiment_folder,
                 dataframe=resultA,
-                model_name=classifier_name,
-                date_str=timestamp,
             )
             evaluate_and_save_metrics(
-                base_path=f"{OUTPUT_DIR}/metrics",
-                file_name=f"metrics_results_task_A_{classifier_name}_{timestamp}.csv",
-                result_df=resultA,
+                file_name=f"metrics_task_A_{classifier_name}_{timestamp}.csv",
+                folder=experiment_folder,
+                dataframe=resultA,
             )
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         # Close the driver connection
         driver.close()
