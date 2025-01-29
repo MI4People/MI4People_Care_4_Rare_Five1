@@ -74,7 +74,7 @@ def get_subject_metrics(session, subjectId):
     
     data = session.run(query).data()
     if len(data) == 0:
-        return SubjectMetrics(subjectMetrics={})
+        return SubjectMetrics(subjectId=subjectId, subjectMetrics={})
     return SubjectMetrics(**data[0])
 
 
