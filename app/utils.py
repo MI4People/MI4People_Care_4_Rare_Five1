@@ -13,7 +13,7 @@ OUTPUT_DIR = "/mnt/output"
 
 def read_config(local=False):
     if local:
-        file_path = f"{INPUT_DIR}/config_local.yml"
+        file_path = f"mnt/input/config_local.yml"
     else:
         file_path = f"{INPUT_DIR}/config.yml"
 

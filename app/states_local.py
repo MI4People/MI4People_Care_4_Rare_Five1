@@ -92,6 +92,7 @@ else:
         logger.info("Fetching data from Neo4j: ...")
         fetcher = DataFetcher(session)
         logger.info("Fetching data from Neo4j: Done")
+        #TODO: Add Nodetype fetcher for information
 
     # logger.info("Fetching validation data from Neo4j: ...")
     # validationFetcher = ValidationDataFetcher(session)

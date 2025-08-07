@@ -100,3 +100,15 @@ class DataFetcher:
         data = session.run(query).data()
         subjects = [Subject(**record) for record in data]
         return subjects
+    
+
+def get_node_and_types(session, label, node_id):
+    query = f"MATCH (n:{label} {{id: '{node_id}'}}) RETURN n"
+    result = session.run(query)
+    record = result.single()
+    if record:
+        node = record["n"]
+        property_types = {key: type(value).__name__ for key, value in node.items()}
+        return node, property_types
+    else:
+        return None, None

@@ -4,3 +4,10 @@ venv
 config.yml
 testing.ipynb
 data/*
+mnt/*
+clinical_synth_data_generation.cypher
+clinical_synth_data.csv
+local_evaluation.ipynb
+sandbox.ipynb
+test.json
+testin.ipynb

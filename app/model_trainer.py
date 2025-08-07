@@ -52,6 +52,9 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
     # Split the data into a observable variables and target variables
     X_train, y_train = df.drop(["isSick"], axis=1), df["isSick"]
 
+    if X_train.empty or y_train.empty:
+        raise ValueError("Training data or labels are empty")
+
     # Store the feature names during the fit stage
     feature_names = X_train.drop(
         columns=[
@@ -63,6 +66,11 @@ def classificationA(df, df_test, classifier=RandomForestClassifier()):
             "icdFirstLetter",
         ]
     ).columns.tolist()
+
+    # Ensure the feature names are valid
+    if not all(feature in X_train.columns for feature in feature_names):
+        raise ValueError("Some feature names are not valid columns in X_train")
+
 
     # Train a Random Forest classifier
     clf = classifier

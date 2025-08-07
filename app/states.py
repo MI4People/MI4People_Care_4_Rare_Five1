@@ -84,36 +84,34 @@ class ExecuteState(AppState):
         X_train, X_test = train_test_split(df, test_size=0.2, random_state=42)
 
         for classifier_name, classifier in classifiers_dict.items():
-            resultA = classificationA(X_train, X_test, classifier)
-            logger.info(f"Results Task A: {resultA}")
+            try:
+                logger.info(f"Running {classifier_name}...")
+                resultA = classificationA(X_train, X_test, classifier)
+                logger.info(f"Results Task A: {resultA}")
+                
+                experiment_folder = get_classifier_experiment_folder(OUTPUT_DIR, classifier_name)
 
-            experiment_folder = get_classifier_experiment_folder(OUTPUT_DIR, classifier_name)
-
-            save_dataframe_to_csv(
-                file_name=f"results_task_A_{classifier_name}_{timestamp}.csv",
-                folder=experiment_folder,
-                dataframe=resultA,
-            )
-            evaluate_and_save_metrics(
-                file_name=f"metrics_task_A_{classifier_name}_{timestamp}.csv",
-                folder=experiment_folder,
-                dataframe=resultA,
-            )
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
+                save_dataframe_to_csv(
+                    file_name=f"results_task_A_{classifier_name}_{timestamp}.csv",
+                    folder=experiment_folder,
+                    dataframe=resultA,
+                )
+                evaluate_and_save_metrics(
+                    file_name=f"metrics_task_A_{classifier_name}_{timestamp}.csv",
+                    folder=experiment_folder,
+                    dataframe=resultA,
+                )
+            except Exception as e:
+                logger.error(f"Error with {classifier_name}: {e}")
+                error_df = pd.DataFrame({"ERROR": [str(e)]})
+                experiment_folder = get_classifier_experiment_folder(OUTPUT_DIR, classifier_name)
+                save_dataframe_to_csv(
+                    file_name=f"results_task_A_{classifier_name}_ERROR_{timestamp}.csv",
+                    folder=experiment_folder,
+                    dataframe=error_df,
+                )
+                continue
+            
         # Close the driver connection
         driver.close()
 
