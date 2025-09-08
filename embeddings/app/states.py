@@ -78,12 +78,13 @@ class ExecuteState(AppState):
             SUBGRAPH = "bio_sample_subgraph"
             
             # --- CONFIGURATION FOR TESTING VS PRODUCTION ---
-            LIMIT_FOR_TESTING = None
+            LIMIT_FOR_TESTING = None # Set to a number (e.g., 100) for testing
+            TESTING_MODE_ENRICHMENT = False # Set to True for a simplified test query
             # ---------------------------------------------
             
             # ─────────────────────────────────────────────────────────────────────
             # STEP 1: Drop existing in-memory graph
-            # ─────────────────────────────────────────────────────────────────────
+            # ─────────────────────────────────────────────────────────────────────            
             logger.info("Dropping existing in-memory graph (if any)…")
             if gds.graph.exists(SUBGRAPH)['exists']:
                 gds.graph.drop(gds.graph.get(SUBGRAPH))
@@ -121,7 +122,6 @@ class ExecuteState(AppState):
             params = {"graphName": SUBGRAPH, "nodeQuery": node_query, "relationshipQuery": relationship_query, "subgraph_ids": subgraph_node_ids, "sample_ids": sample_ids}
             result_df = pd.DataFrame(gds.run_cypher(proj_cypher, params))
             logger.info(f"Projected graph '{result_df.iloc[0]['graphName']}' in {time.time()-t0:.2f}s")
-
             # ─────────────────────────────────────────────────────────────────────
             # STEP 3: Run embeddings and create intermediate result
             # ─────────────────────────────────────────────────────────────────────
@@ -139,81 +139,117 @@ class ExecuteState(AppState):
             logger.info("Creating intermediate embedding summary file...")
             subjects_q = "MATCH (bs:Biological_sample) WHERE id(bs) IN $ids RETURN id(bs) as node_id, bs.subjectid as subjectid"
             df_subjects = run_query_in_batches(gds, subjects_q, sample_ids, 500, "subjects_for_summary")
-            
             df_fastrp_samples = df_fastrp[df_fastrp['node_id'].isin(sample_ids)]
             df_n2v_samples = df_n2v[df_n2v['node_id'].isin(sample_ids)]
             df_embedding_summary = df_subjects.merge(df_fastrp_samples, on="node_id").merge(df_n2v_samples, on="node_id")
-            
             summary_path = os.path.join(OUTPUT_DIR, "bio_sample_embeddings_summary.csv")
             df_embedding_summary.to_csv(summary_path, index=False)
             logger.info(f"  → Saved intermediate summary with {df_embedding_summary.shape[0]} rows → {summary_path}")
 
             # ─────────────────────────────────────────────────────────────────────
-            # STEP 4: FETCH ALL METADATA IN ONE EFFICIENT, COMBINED QUERY
+            # STEP 4: FETCH METADATA AND CREATE FINAL DATASET
             # ─────────────────────────────────────────────────────────────────────
             
-            full_enrich_q = """
-            MATCH (bs:Biological_sample) WHERE id(bs) IN $ids
+            def to_unique_list(series):
+                return series.dropna().unique().tolist()
 
-            // --- Subquery for Proteins ---
-            CALL {
-                WITH bs
+            if TESTING_MODE_ENRICHMENT:
+                # --- LOGIC FOR SIMPLE TESTING MODE (UNCHANGED) ---
+                logger.warning("LOCAL TESTING MODE: Using 'light' enriched metadata query.")
+                # This query remains unchanged as it's simple and fast for testing.
+                enrich_q = """
+                MATCH (bs:Biological_sample) WHERE id(bs) IN $ids
                 OPTIONAL MATCH (bs)-[:HAS_QUANTIFIED_PROTEIN]->(p:Protein)
-                OPTIONAL MATCH (p)-[:ASSOCIATED_WITH]->(mf:Molecular_function)
-                OPTIONAL MATCH (p)-[:ASSOCIATED_WITH]->(bp:Biological_process)
-                OPTIONAL MATCH (p)-[:ANNOTATED_IN_PATHWAY]->(pw:Pathway)
-                RETURN
-                    collect(DISTINCT p.name) AS protein_name,
-                    collect(DISTINCT mf.name) AS molecular_function,
-                    collect(DISTINCT bp.name) AS biological_process,
-                    collect(DISTINCT pw.name) AS pathway
-            }
-            // --- Subquery for Genes ---
-            CALL {
-                WITH bs
                 OPTIONAL MATCH (bs)-[:HAS_DAMAGE]->(g:Gene)
-                OPTIONAL MATCH (g)-[:ASSOCIATED_WITH]->(d:Disease)
-                RETURN
-                    collect(DISTINCT g.name) AS gene_name,
-                    collect(DISTINCT d.name) AS gene_disease_link
-            }
-            // --- Subquery for Variants ---
-            CALL {
-                WITH bs
-                OPTIONAL MATCH (bs)-->(:Protein|Gene)<-[:VARIANT_FOUND_IN_GENE|:VARIANT_FOUND_IN_PROTEIN]-(kv:Known_variant)
-                OPTIONAL MATCH (kv)-[:VARIANT_IS_CLINICALLY_RELEVANT]->(cv:Clinically_relevant_variant)
-                RETURN
-                    collect(DISTINCT kv.pvariant_id) AS known_variant,
-                    collect(DISTINCT cv.id) AS clinical_variant
-            }
-            // --- Subquery for Patient Diseases ---
-            CALL {
-                WITH bs
-                OPTIONAL MATCH (bs)-[:HAS_DISEASE]->(d:Disease)
-                RETURN collect(DISTINCT d.name) AS patient_diseases
-            }
-
-            RETURN
-                id(bs) AS node_id,
-                protein_name, molecular_function, biological_process, pathway,
-                gene_name, gene_disease_link,
-                known_variant, clinical_variant,
-                patient_diseases // <-- NEUES Feld hier hinzugefügt
-            """
-            
-            # Select batch size (script failed with batch size 25)
-            df_enrich = run_query_in_batches(gds, full_enrich_q, sample_ids, 10, "full_enrichment")
-            
-            # Merge the single enrichment result with the embeddings
-            if not df_enrich.empty:
-                df_full = pd.merge(df_embedding_summary, df_enrich, on='node_id', how='left')
+                RETURN id(bs) AS node_id, bs.subjectid AS subjectid,
+                       collect(DISTINCT properties(p)) AS protein_props,
+                       collect(DISTINCT properties(g)) AS gene_props
+                """
+                df_enrich = run_query_in_batches(gds, enrich_q, sample_ids, 5, "light_enrichment")
+                df_full = df_enrich.merge(df_embedding_summary, on=["node_id", "subjectid"], how="inner")
             else:
-                df_full = df_embedding_summary.copy()
+                # --- ROBUST LOGIC FOR PRODUCTION (CLIENT-SIDE AGGREGATION) ---
+                df_base = df_embedding_summary.copy()
+
+                # --- Query 1: Protein Enrichments (broken into multiple simple queries) ---
+                protein_base_q = "MATCH (bs:Biological_sample)-[:HAS_QUANTIFIED_PROTEIN]->(p:Protein) WHERE id(bs) IN $ids RETURN id(bs) AS node_id, p.name AS protein_name"
+                df_protein_base = run_query_in_batches(gds, protein_base_q, sample_ids, 500, "protein_base")
+                
+                if not df_protein_base.empty:
+                    unique_protein_names = df_protein_base['protein_name'].dropna().unique().tolist()
+
+                    protein_mf_q = "MATCH (p:Protein)-[:ASSOCIATED_WITH]->(mf:Molecular_function) WHERE p.name IN $ids RETURN p.name AS protein_name, mf.name AS molecular_function"
+                    df_protein_mf = run_query_in_batches(gds, protein_mf_q, unique_protein_names, 10000, "protein_mf")
+
+                    protein_bp_q = "MATCH (p:Protein)-[:ASSOCIATED_WITH]->(bp:Biological_process) WHERE p.name IN $ids RETURN p.name AS protein_name, bp.name AS biological_process"
+                    df_protein_bp = run_query_in_batches(gds, protein_bp_q, unique_protein_names, 10000, "protein_bp")
+                    
+                    protein_pw_q = "MATCH (p:Protein)-[:ANNOTATED_IN_PATHWAY]->(pw:Pathway) WHERE p.name IN $ids RETURN p.name AS protein_name, pw.name AS pathway"
+                    df_protein_pw = run_query_in_batches(gds, protein_pw_q, unique_protein_names, 10000, "protein_pathway")
+
+                    logger.info("Merging protein enrichment parts in pandas...")
+                    df_protein_long = df_protein_base
+                    if not df_protein_mf.empty: df_protein_long = pd.merge(df_protein_long, df_protein_mf, on='protein_name', how='left')
+                    if not df_protein_bp.empty: df_protein_long = pd.merge(df_protein_long, df_protein_bp, on='protein_name', how='left')
+                    if not df_protein_pw.empty: df_protein_long = pd.merge(df_protein_long, df_protein_pw, on='protein_name', how='left')
+
+                    logger.info("Aggregating protein data in pandas...")
+                    df_protein_agg = df_protein_long.groupby('node_id').agg(
+                        protein_names=('protein_name', to_unique_list),
+                        molecular_functions=('molecular_function', to_unique_list),
+                        biological_processes=('biological_process', to_unique_list),
+                        pathways=('pathway', to_unique_list)
+                    ).reset_index()
+                    df_base = pd.merge(df_base, df_protein_agg, on='node_id', how='left')
+
+                # --- Query 2: Gene Enrichments ---
+                gene_long_q = "MATCH (bs:Biological_sample)-[:HAS_DAMAGE]->(g:Gene) WHERE id(bs) IN $ids OPTIONAL MATCH (g)-[:ASSOCIATED_WITH]->(d:Disease) RETURN id(bs) AS node_id, g.name AS gene_name, d.name AS gene_disease_link"
+                df_gene_long = run_query_in_batches(gds, gene_long_q, sample_ids, 500, "gene_enrich_long")
+                
+                if not df_gene_long.empty:
+                    logger.info("Aggregating gene data in pandas...")
+                    df_gene_agg = df_gene_long.groupby('node_id').agg(
+                        gene_names=('gene_name', to_unique_list),
+                        gene_disease_links=('gene_disease_link', to_unique_list)
+                    ).reset_index()
+                    df_base = pd.merge(df_base, df_gene_agg, on='node_id', how='left')
+
+                # --- Query 3: Patient Disease Enrichments ---
+                disease_long_q = "MATCH (bs:Biological_sample)-[:HAS_DISEASE]->(d) WHERE id(bs) IN $ids AND (d:Disease OR d:Clinical_variable) RETURN id(bs) AS node_id, d.name AS patient_disease"
+                df_disease_long = run_query_in_batches(gds, disease_long_q, sample_ids, 500, "patient_disease_long")
+
+                if not df_disease_long.empty:
+                    logger.info("Aggregating patient disease data in pandas...")
+                    df_disease_agg = df_disease_long.groupby('node_id').agg(
+                        patient_diseases=('patient_disease', to_unique_list)
+                    ).reset_index()
+                    df_base = pd.merge(df_base, df_disease_agg, on='node_id', how='left')
+                
+                # --- Query 4: Variant Enrichments (Highly Focused & Efficient) ---
+                variant_long_q = """
+                    MATCH (bs:Biological_sample) WHERE id(bs) IN $ids
+                    WITH bs, apoc.coll.toSet([(bs)-->(p:Protein) | p] + [(bs)-->(g:Gene) | g]) AS unique_nodes
+                    UNWIND unique_nodes as node
+                    MATCH (node)<-[:VARIANT_FOUND_IN_GENE|:VARIANT_FOUND_IN_PROTEIN]-(kv:Known_variant)-[:VARIANT_IS_CLINICALLY_RELEVANT]->(cv:Clinically_relevant_variant)
+                    RETURN DISTINCT id(bs) AS node_id,
+                           kv.pvariant_id AS known_variant,
+                           cv.id AS clinical_variant
+                """
+                df_variant_long = run_query_in_batches(gds, variant_long_q, sample_ids, 50, "variant_enrich_long")
+                
+                if not df_variant_long.empty:
+                    logger.info("Aggregating variant data in pandas...")
+                    df_variant_agg = df_variant_long.groupby('node_id').agg(
+                        known_variants=('known_variant', to_unique_list),
+                        clinical_variants=('clinical_variant', to_unique_list)
+                    ).reset_index()
+                    df_base = pd.merge(df_base, df_variant_agg, on='node_id', how='left')
+                
+                df_full = df_base
 
             # Final cleanup and save
             if 'node_id' in df_full.columns:
                 df_full.drop(columns=['node_id'], inplace=True)
-            
             path_full = os.path.join(OUTPUT_DIR, "bio_sample_full.csv")
             df_full.to_csv(path_full, index=False)
             logger.info(f"Saved full dataset: {df_full.shape[0]} rows → {path_full}")
