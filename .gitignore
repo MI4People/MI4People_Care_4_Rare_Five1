@@ -16,3 +16,6 @@ testing.ipynb
 testlogs.txt
 function_test.ipynb
 .env
+
+test/
+.mypy_cache/
