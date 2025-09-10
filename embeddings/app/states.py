@@ -176,31 +176,51 @@ class ExecuteState(AppState):
                 df_protein_base = run_query_in_batches(gds, protein_base_q, sample_ids, 500, "protein_base")
                 
                 if not df_protein_base.empty:
+                    # Aggregate the base protein list first
+                    logger.info("Aggregating base protein data in pandas...")
+                    df_protein_agg = df_protein_base.groupby('node_id').agg(protein_names=('protein_name', to_unique_list)).reset_index()
+
                     unique_protein_names = df_protein_base['protein_name'].dropna().unique().tolist()
 
+                    # Fetch and aggregate molecular functions
                     protein_mf_q = "MATCH (p:Protein)-[:ASSOCIATED_WITH]->(mf:Molecular_function) WHERE p.name IN $ids RETURN p.name AS protein_name, mf.name AS molecular_function"
                     df_protein_mf = run_query_in_batches(gds, protein_mf_q, unique_protein_names, 10000, "protein_mf")
+                    if not df_protein_mf.empty:
+                        logger.info("Aggregating molecular function data in pandas...")
+                        df_mf_agg = df_protein_mf.groupby('protein_name').agg(molecular_functions=('molecular_function', to_unique_list)).reset_index()
+                        # Join the aggregated functions to the main protein table
+                        df_protein_base = pd.merge(df_protein_base, df_mf_agg, on='protein_name', how='left')
 
+                    # Fetch and aggregate biological processes
                     protein_bp_q = "MATCH (p:Protein)-[:ASSOCIATED_WITH]->(bp:Biological_process) WHERE p.name IN $ids RETURN p.name AS protein_name, bp.name AS biological_process"
                     df_protein_bp = run_query_in_batches(gds, protein_bp_q, unique_protein_names, 10000, "protein_bp")
+                    if not df_protein_bp.empty:
+                        logger.info("Aggregating biological process data in pandas...")
+                        df_bp_agg = df_protein_bp.groupby('protein_name').agg(biological_processes=('biological_process', to_unique_list)).reset_index()
+                        df_protein_base = pd.merge(df_protein_base, df_bp_agg, on='protein_name', how='left')
                     
+                    # Fetch and aggregate pathways
                     protein_pw_q = "MATCH (p:Protein)-[:ANNOTATED_IN_PATHWAY]->(pw:Pathway) WHERE p.name IN $ids RETURN p.name AS protein_name, pw.name AS pathway"
                     df_protein_pw = run_query_in_batches(gds, protein_pw_q, unique_protein_names, 10000, "protein_pathway")
+                    if not df_protein_pw.empty:
+                        logger.info("Aggregating pathway data in pandas...")
+                        df_pw_agg = df_protein_pw.groupby('protein_name').agg(pathways=('pathway', to_unique_list)).reset_index()
+                        df_protein_base = pd.merge(df_protein_base, df_pw_agg, on='protein_name', how='left')
+                    
+                    # Now, aggregate the final combined protein data by sample
+                    logger.info("Aggregating all protein data per sample...")
+                    # Define columns to aggregate, checking if they exist first
+                    agg_dict = {'protein_names': ('protein_name', to_unique_list)}
+                    if 'molecular_functions' in df_protein_base.columns:
+                        agg_dict['molecular_functions'] = ('molecular_functions', lambda s: [item for sublist in s.dropna() for item in sublist])
+                    if 'biological_processes' in df_protein_base.columns:
+                        agg_dict['biological_processes'] = ('biological_processes', lambda s: [item for sublist in s.dropna() for item in sublist])
+                    if 'pathways' in df_protein_base.columns:
+                        agg_dict['pathways'] = ('pathways', lambda s: [item for sublist in s.dropna() for item in sublist])
+                    
+                    df_protein_final_agg = df_protein_base.groupby('node_id').agg(**agg_dict).reset_index()
+                    df_base = pd.merge(df_base, df_protein_final_agg, on='node_id', how='left')
 
-                    logger.info("Merging protein enrichment parts in pandas...")
-                    df_protein_long = df_protein_base
-                    if not df_protein_mf.empty: df_protein_long = pd.merge(df_protein_long, df_protein_mf, on='protein_name', how='left')
-                    if not df_protein_bp.empty: df_protein_long = pd.merge(df_protein_long, df_protein_bp, on='protein_name', how='left')
-                    if not df_protein_pw.empty: df_protein_long = pd.merge(df_protein_long, df_protein_pw, on='protein_name', how='left')
-
-                    logger.info("Aggregating protein data in pandas...")
-                    df_protein_agg = df_protein_long.groupby('node_id').agg(
-                        protein_names=('protein_name', to_unique_list),
-                        molecular_functions=('molecular_function', to_unique_list),
-                        biological_processes=('biological_process', to_unique_list),
-                        pathways=('pathway', to_unique_list)
-                    ).reset_index()
-                    df_base = pd.merge(df_base, df_protein_agg, on='node_id', how='left')
 
                 # --- Query 2: Gene Enrichments ---
                 gene_long_q = "MATCH (bs:Biological_sample)-[:HAS_DAMAGE]->(g:Gene) WHERE id(bs) IN $ids OPTIONAL MATCH (g)-[:ASSOCIATED_WITH]->(d:Disease) RETURN id(bs) AS node_id, g.name AS gene_name, d.name AS gene_disease_link"
@@ -246,7 +266,6 @@ class ExecuteState(AppState):
                     df_base = pd.merge(df_base, df_variant_agg, on='node_id', how='left')
                 
                 df_full = df_base
-
             # Final cleanup and save
             if 'node_id' in df_full.columns:
                 df_full.drop(columns=['node_id'], inplace=True)
